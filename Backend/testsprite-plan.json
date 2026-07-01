@@ -1,0 +1,294 @@
+{
+  "project": "e2c10f14-f45c-4239-b167-5aee3adc47dd",
+  "baseUrl": "https://luckiness-avalanche-uncombed.ngrok-free.dev/api/v1",
+  "tests": [
+    {
+      "name": "Auth - Register new consumer account",
+      "description": "POST /auth/register should create a consumer and trigger WhatsApp OTP",
+      "steps": [
+        {
+          "method": "POST",
+          "path": "/auth/register",
+          "body": {
+            "full_name": "Test Consumer",
+            "phone_number": "+923001234567",
+            "role": "CONSUMER",
+            "password": "SecurePass123"
+          },
+          "expect": {
+            "status": 201,
+            "bodyContains": "OTP"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Auth - Login with unverified account should fail",
+      "description": "POST /auth/login should return 403 for unverified users",
+      "steps": [
+        {
+          "method": "POST",
+          "path": "/auth/register",
+          "body": {
+            "full_name": "Unverified User",
+            "phone_number": "+923009876543",
+            "role": "CONSUMER",
+            "password": "SecurePass123"
+          },
+          "expect": { "status": 201 }
+        },
+        {
+          "method": "POST",
+          "path": "/auth/login",
+          "body": {
+            "phone_number": "+923009876543",
+            "password": "SecurePass123"
+          },
+          "expect": {
+            "status": 403,
+            "bodyContains": "verified"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Auth - Login with wrong password should fail",
+      "description": "POST /auth/login should return 401 for invalid credentials",
+      "steps": [
+        {
+          "method": "POST",
+          "path": "/auth/login",
+          "body": {
+            "phone_number": "+923001234567",
+            "password": "WrongPassword"
+          },
+          "expect": {
+            "status": 401
+          }
+        }
+      ]
+    },
+    {
+      "name": "Auth - OTP verify with invalid code should fail",
+      "description": "POST /auth/verify-otp with wrong code returns 401",
+      "steps": [
+        {
+          "method": "POST",
+          "path": "/auth/verify-otp",
+          "body": {
+            "phone_number": "+923001234567",
+            "otp_code": "000000"
+          },
+          "expect": {
+            "status": 401
+          }
+        }
+      ]
+    },
+    {
+      "name": "Auth - Register with duplicate phone number should fail",
+      "description": "POST /auth/register with existing phone returns 409 Conflict",
+      "steps": [
+        {
+          "method": "POST",
+          "path": "/auth/register",
+          "body": {
+            "full_name": "Duplicate User",
+            "phone_number": "+923001234567",
+            "role": "CONSUMER",
+            "password": "SecurePass123"
+          },
+          "expect": {
+            "status": 409,
+            "bodyContains": "registered"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Auth - Register with missing fields should fail validation",
+      "description": "POST /auth/register with missing required fields returns 400",
+      "steps": [
+        {
+          "method": "POST",
+          "path": "/auth/register",
+          "body": {
+            "phone_number": "+923001234567"
+          },
+          "expect": {
+            "status": 400
+          }
+        }
+      ]
+    },
+    {
+      "name": "Services - List all services is public",
+      "description": "GET /services should return array without auth token",
+      "steps": [
+        {
+          "method": "GET",
+          "path": "/services",
+          "expect": {
+            "status": 200,
+            "bodyType": "array"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Services - Create service requires ADMIN JWT",
+      "description": "POST /services without JWT should return 401",
+      "steps": [
+        {
+          "method": "POST",
+          "path": "/services",
+          "body": {
+            "title": "Test Service",
+            "base_price": 2500,
+            "estimated_duration_mins": 60
+          },
+          "expect": {
+            "status": 401
+          }
+        }
+      ]
+    },
+    {
+      "name": "Services - Create service with CONSUMER JWT should return 403",
+      "description": "POST /services with non-admin token returns 403 Forbidden",
+      "steps": [
+        {
+          "method": "POST",
+          "path": "/services",
+          "headers": {
+            "Authorization": "Bearer invalid_consumer_token"
+          },
+          "body": {
+            "title": "Unauthorized Service",
+            "base_price": 1000
+          },
+          "expect": {
+            "status": 401
+          }
+        }
+      ]
+    },
+    {
+      "name": "Bookings - Create booking requires auth",
+      "description": "POST /bookings without JWT returns 401",
+      "steps": [
+        {
+          "method": "POST",
+          "path": "/bookings",
+          "body": {
+            "service_id": "00000000-0000-0000-0000-000000000000",
+            "technician_id": "00000000-0000-0000-0000-000000000000",
+            "scheduled_start": "2026-07-10T10:00:00Z",
+            "address_details": {
+              "area": "DHA Phase 6",
+              "street": "Street 12",
+              "house": "House 45"
+            }
+          },
+          "expect": {
+            "status": 401
+          }
+        }
+      ]
+    },
+    {
+      "name": "Bookings - Availability check requires auth",
+      "description": "GET /bookings/availability without JWT returns 401",
+      "steps": [
+        {
+          "method": "GET",
+          "path": "/bookings/availability?service_id=test&scheduled_start=2026-07-10T10:00:00Z",
+          "expect": {
+            "status": 401
+          }
+        }
+      ]
+    },
+    {
+      "name": "Bookings - Technician agenda requires auth",
+      "description": "GET /bookings/agenda without JWT returns 401",
+      "steps": [
+        {
+          "method": "GET",
+          "path": "/bookings/agenda",
+          "expect": {
+            "status": 401
+          }
+        }
+      ]
+    },
+    {
+      "name": "Payments - Earnings requires auth",
+      "description": "GET /payments/earnings without JWT returns 401",
+      "steps": [
+        {
+          "method": "GET",
+          "path": "/payments/earnings",
+          "expect": {
+            "status": 401
+          }
+        }
+      ]
+    },
+    {
+      "name": "Payments - Consumer transactions requires auth",
+      "description": "GET /payments/transactions/my without JWT returns 401",
+      "steps": [
+        {
+          "method": "GET",
+          "path": "/payments/transactions/my",
+          "expect": {
+            "status": 401
+          }
+        }
+      ]
+    },
+    {
+      "name": "Auth - Rate limiting on register endpoint",
+      "description": "POST /auth/register should rate-limit after 5 rapid requests (429)",
+      "steps": [
+        {
+          "method": "POST",
+          "path": "/auth/register",
+          "body": { "full_name": "A", "phone_number": "+923111111111", "role": "CONSUMER", "password": "pass1234" },
+          "expect": { "statusOneOf": [201, 409, 429] }
+        },
+        {
+          "method": "POST",
+          "path": "/auth/register",
+          "body": { "full_name": "B", "phone_number": "+923111111112", "role": "CONSUMER", "password": "pass1234" },
+          "expect": { "statusOneOf": [201, 409, 429] }
+        },
+        {
+          "method": "POST",
+          "path": "/auth/register",
+          "body": { "full_name": "C", "phone_number": "+923111111113", "role": "CONSUMER", "password": "pass1234" },
+          "expect": { "statusOneOf": [201, 409, 429] }
+        },
+        {
+          "method": "POST",
+          "path": "/auth/register",
+          "body": { "full_name": "D", "phone_number": "+923111111114", "role": "CONSUMER", "password": "pass1234" },
+          "expect": { "statusOneOf": [201, 409, 429] }
+        },
+        {
+          "method": "POST",
+          "path": "/auth/register",
+          "body": { "full_name": "E", "phone_number": "+923111111115", "role": "CONSUMER", "password": "pass1234" },
+          "expect": { "statusOneOf": [201, 409, 429] }
+        },
+        {
+          "method": "POST",
+          "path": "/auth/register",
+          "body": { "full_name": "F", "phone_number": "+923111111116", "role": "CONSUMER", "password": "pass1234" },
+          "expect": { "statusOneOf": [201, 409, 429] }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+Frontend/
+stitch_fixit_home_service_platform/
+.agents/
+node_modules/
+.env
+dist/

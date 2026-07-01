@@ -1,0 +1,11 @@
+{
+  "name": "fixit-monorepo",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "cd Backend && npm install && npm run build",
+    "start": "cd Backend && npm run start:prod"
+  },
+  "engines": {
+    "node": "20.x"
+  }
+}

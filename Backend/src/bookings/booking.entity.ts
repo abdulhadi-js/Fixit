@@ -68,4 +68,7 @@ export class Booking {
 
   @Column({ type: 'int', nullable: true })
   estimated_amount: number;
+
+  @Column({ type: 'varchar', default: 'CARD' })
+  payment_method: string;
 }

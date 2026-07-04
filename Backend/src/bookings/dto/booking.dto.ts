@@ -20,6 +20,10 @@ export class CreateBookingDto {
   @Min(1)
   @IsOptional()
   estimated_amount?: number;
+
+  @IsString()
+  @IsOptional()
+  payment_method?: string;
 }
 
 export class UpdateBookingStatusDto {

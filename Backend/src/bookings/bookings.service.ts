@@ -94,8 +94,9 @@ export class BookingsService {
         service_id: dto.service_id,
         scheduled_time: scheduledTime,
         address_details: dto.address_details,
-        status: BookingStatus.PENDING_PAYMENT,
+        status: dto.payment_method === 'CASH' ? BookingStatus.CONFIRMED : BookingStatus.PENDING_PAYMENT,
         estimated_amount: dto.estimated_amount || service.base_price,
+        payment_method: dto.payment_method || 'CARD',
       });
 
       booking = await this.bookingRepo.save(booking);
@@ -106,6 +107,10 @@ export class BookingsService {
         );
       }
       throw error;
+    }
+
+    if (booking.payment_method === 'CASH') {
+      return { booking, client_secret: '' };
     }
 
     const finalAmount = dto.estimated_amount || service.base_price;
@@ -200,8 +205,8 @@ export class BookingsService {
 
     await this.bookingRepo.update(bookingId, { status: newStatus });
     
-    // Capture payment if the job is now completed
-    if (newStatus === BookingStatus.COMPLETED) {
+    // Capture payment if the job is now completed AND was paid by CARD
+    if (newStatus === BookingStatus.COMPLETED && booking.payment_method === 'CARD') {
       await this.paymentsService.capturePayment(bookingId);
     }
 

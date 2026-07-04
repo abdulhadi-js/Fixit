@@ -1,0 +1,15 @@
+{
+  "projectId": "ca388dba-5d3b-43b5-8310-82de8cfb301b",
+  "type": "frontend",
+  "name": "Consumer can book a service",
+  "description": "When a user navigates to the service catalog, they can select a service, choose a date and address, and proceed to checkout.",
+  "priority": "p0",
+  "planSteps": [
+    { "type": "action", "description": "Navigate to the service catalog page" },
+    { "type": "action", "description": "If a LocalTunnel reminder page is shown, click the 'Click to Continue' button to bypass it." },
+    { "type": "action", "description": "Wait for the service catalog to load and click on the 'Book Now' or 'View Details' button for the first available service." },
+    { "type": "action", "description": "On the service details page, fill out the scheduling form by selecting a date, time, area, street, and house number." },
+    { "type": "action", "description": "Submit the scheduling form by clicking the 'Proceed to Checkout' or 'Book Now' button." },
+    { "type": "assertion", "description": "Verify that the user is navigated to the secure checkout page and an order summary is visible." }
+  ]
+}

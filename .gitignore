@@ -1,6 +1,23 @@
+# Folders to ignore entirely
 Frontend/
 stitch_fixit_home_service_platform/
 .agents/
 node_modules/
-.env
 dist/
+Backend/
+
+# Secrets
+.env
+*.pem
+fixtit aws/
+
+# Extra root files (not part of backend)
+PRD.md
+plan.json
+payment-plan.json
+render.yaml
+create_test_users.py
+seed_services.py
+test_auth.py
+docker-compose.yml
+package.json

@@ -5,11 +5,9 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-# Copy dependency manifests first (layer caching)
 COPY package*.json ./
-RUN npm ci
+RUN npm install
 
-# Copy source and compile TypeScript
 COPY . .
 RUN npm run build
 
@@ -22,11 +20,9 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 
-# Only install production dependencies
 COPY package*.json ./
-RUN npm ci --only=production && npm cache clean --force
+RUN npm install --omit=dev && npm cache clean --force
 
-# Copy compiled output from builder
 COPY --from=builder /app/dist ./dist
 
 EXPOSE 3001

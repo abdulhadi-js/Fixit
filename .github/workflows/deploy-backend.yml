@@ -3,7 +3,7 @@ name: Deploy Backend to AWS Serverless
 on:
   push:
     branches:
-      - main
+      - aws-serverless
     paths:
       - 'Backend/**'
 

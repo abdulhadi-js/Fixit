@@ -1,0 +1,12 @@
+node_modules
+dist
+.env
+.env.local
+.git
+*.log
+stripe-cli
+stripe.zip
+testsprite
+.testsprite
+coverage
+.nyc_output

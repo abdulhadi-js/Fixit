@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Service Catalog - FixIt</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#ecf2ec",
+                        "surface-container-low": "#eff5ef",
+                        "on-primary-fixed": "#002114",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#006c4a",
+                        "primary-container": "#00855d",
+                        "surface-container-high": "#e4eae4",
+                        "primary-fixed": "#85f8c4",
+                        "text-primary": "#18181B",
+                        "accent-hover": "#047857",
+                        "on-background": "#171d19",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#dee4de",
+                        "on-tertiary-fixed": "#410004",
+                        "tertiary-fixed": "#ffdad7",
+                        "secondary-fixed-dim": "#c8c5ca",
+                        "secondary-fixed": "#e4e1e6",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed-variant": "#47464a",
+                        "tertiary-container": "#ba5551",
+                        "on-surface-variant": "#3d4a42",
+                        "primary-fixed-dim": "#68dba9",
+                        "on-primary-container": "#f5fff7",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed": "#1b1b1e",
+                        "surface-container-highest": "#dee4de",
+                        "surface": "#f5fbf5",
+                        "primary": "#006948",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#f5fbf5",
+                        "on-tertiary": "#ffffff",
+                        "canvas": "#FAFAFA",
+                        "tertiary-fixed-dim": "#ffb3ae",
+                        "outline-variant": "#bccac0",
+                        "background": "#f5fbf5",
+                        "on-primary-fixed-variant": "#005137",
+                        "inverse-primary": "#68dba9",
+                        "surface-dim": "#d5dcd6",
+                        "surface-high": "#FFFFFF",
+                        "inverse-surface": "#2c322e",
+                        "surface-muted": "#F4F4F5",
+                        "on-error-container": "#93000a",
+                        "text-secondary": "#71717A",
+                        "secondary-container": "#e4e1e6",
+                        "secondary": "#5f5e61",
+                        "surface-container": "#e9efe9",
+                        "on-surface": "#171d19",
+                        "on-tertiary-fixed-variant": "#7f2928",
+                        "outline": "#6d7a72",
+                        "tertiary": "#9b3e3b",
+                        "on-error": "#ffffff",
+                        "on-secondary-container": "#656467",
+                        "border-soft": "#E4E4E7",
+                        "on-tertiary-container": "#fffbff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gap-standard": "1.5rem",
+                        "gap-tight": "1rem",
+                        "container-max": "1280px",
+                        "gutter": "1.5rem",
+                        "margin-x": "2rem"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Geist"],
+                        "caption": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "headline-lg-mobile": ["Geist"],
+                        "label-md": ["Geist"],
+                        "headline-lg": ["Geist"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.025em", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "headline-lg": ["30px", {"lineHeight": "36px", "letterSpacing": "-0.025em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Geist', sans-serif; }
+    </style>
+</head>
+<body class="bg-canvas text-text-primary flex flex-col min-h-screen">
+<!-- TopNavBar -->
+<header class="bg-surface-high dark:bg-inverse-surface fixed top-0 w-full border-b border-border-soft dark:border-outline-variant z-50">
+<div class="flex justify-between items-center h-16 px-margin-x max-w-container-max mx-auto">
+<!-- Brand Logo -->
+<div class="text-headline-lg font-headline-lg text-on-surface dark:text-inverse-on-surface">FixIt</div>
+<!-- Search Bar (on_left configuration logic - placeholder visually) -->
+<div class="hidden md:flex flex-1 mx-8 max-w-md">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-muted border border-border-soft rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md text-text-primary transition-colors" placeholder="Search services..." type="text"/>
+</div>
+</div>
+<!-- Trailing Action -->
+<button class="px-4 py-2 bg-primary text-on-primary rounded-lg font-label-md text-label-md hover:bg-accent-hover transition-colors">Sign In</button>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 max-w-container-max mx-auto w-full px-margin-x pt-24 pb-12 flex flex-col md:flex-row gap-gap-standard">
+<!-- Sidebar (Filters) -->
+<aside class="w-full md:w-1/4 flex-shrink-0">
+<div class="sticky top-24 bg-surface-high border border-border-soft rounded-xl p-6 shadow-sm">
+<h2 class="font-headline-md text-headline-md mb-6 text-on-surface">Categories</h2>
+<div class="space-y-4">
+<label class="flex items-center space-x-3 cursor-pointer group">
+<input checked="" class="form-checkbox h-5 w-5 text-primary border-border-soft rounded focus:ring-primary focus:ring-offset-surface-high transition-colors" type="checkbox"/>
+<span class="font-body-md text-body-md text-text-primary group-hover:text-primary transition-colors">HVAC</span>
+</label>
+<label class="flex items-center space-x-3 cursor-pointer group">
+<input class="form-checkbox h-5 w-5 text-primary border-border-soft rounded focus:ring-primary focus:ring-offset-surface-high transition-colors" type="checkbox"/>
+<span class="font-body-md text-body-md text-text-primary group-hover:text-primary transition-colors">Electrical</span>
+</label>
+<label class="flex items-center space-x-3 cursor-pointer group">
+<input class="form-checkbox h-5 w-5 text-primary border-border-soft rounded focus:ring-primary focus:ring-offset-surface-high transition-colors" type="checkbox"/>
+<span class="font-body-md text-body-md text-text-primary group-hover:text-primary transition-colors">Plumbing</span>
+</label>
+</div>
+<hr class="my-6 border-border-soft"/>
+<h2 class="font-headline-md text-headline-md mb-4 text-on-surface">Price Range</h2>
+<div class="space-y-4">
+<label class="flex items-center space-x-3 cursor-pointer group">
+<input class="form-radio h-5 w-5 text-primary border-border-soft focus:ring-primary focus:ring-offset-surface-high transition-colors" name="price" type="radio"/>
+<span class="font-body-md text-body-md text-text-primary group-hover:text-primary transition-colors">Under Rs. 1,000</span>
+</label>
+<label class="flex items-center space-x-3 cursor-pointer group">
+<input checked="" class="form-radio h-5 w-5 text-primary border-border-soft focus:ring-primary focus:ring-offset-surface-high transition-colors" name="price" type="radio"/>
+<span class="font-body-md text-body-md text-text-primary group-hover:text-primary transition-colors">Rs. 1,000 - Rs. 5,000</span>
+</label>
+<label class="flex items-center space-x-3 cursor-pointer group">
+<input class="form-radio h-5 w-5 text-primary border-border-soft focus:ring-primary focus:ring-offset-surface-high transition-colors" name="price" type="radio"/>
+<span class="font-body-md text-body-md text-text-primary group-hover:text-primary transition-colors">Above Rs. 5,000</span>
+</label>
+</div>
+</div>
+</aside>
+<!-- Product Grid -->
+<div class="w-full md:w-3/4">
+<!-- Grid Header -->
+<div class="flex justify-between items-center mb-6">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Available Services</h1>
+<span class="font-label-md text-label-md text-text-secondary">Showing 6 results</span>
+</div>
+<!-- Grid Container -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Service Card 1 -->
+<div class="bg-surface-high border border-border-soft rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col group">
+<div class="h-48 w-full bg-surface-muted relative overflow-hidden">
+<div class="bg-cover bg-center w-full h-full transform group-hover:scale-105 transition-transform duration-300" data-alt="A bright, clean professional close-up shot of a modern air conditioning unit being serviced by a technician's gloved hand holding a cleaning tool. The lighting is crisp and natural, highlighting the pristine white plastic of the AC unit against a softly blurred, neutral beige interior wall background. The aesthetic communicates hygiene, precision, and reliable home maintenance service." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBYDmISdsr1X-BXrBP80ECKPXFFzu57dGrl62SrUNvXSyxo-rksWks2GOmrKDxjzUjJr_pUNUgWf1xuLgwQ740JWKtQoYVQ-CHpllRPv9xXD0ZSEJDjVoCdltKtSOcwXvq61u06EGZbZOSxGZOXpioAJ2POXexLDs8Y6rUnI-f41ltPIi_lMdxbHcD4YtqPVSjWc8Wl3RkZSb9-7fc-JUdPvSqMfLXUL0Kn692bHYFtEEWXJIF0-GEru3q7pOXEi209CJhoe6MwAYc')"></div>
+<div class="absolute top-3 left-3 bg-primary-container text-on-primary-container px-2 py-1 rounded font-caption text-caption shadow-sm">Bestseller</div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2 line-clamp-2">1.5 Ton AC Deep Clean</h3>
+<div class="flex items-center space-x-1 text-text-secondary mb-4">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span class="font-caption text-caption">60 mins</span>
+</div>
+<div class="mt-auto flex items-center justify-between mb-4">
+<span class="font-headline-md text-headline-md text-primary font-bold">Rs. 2,500</span>
+</div>
+<button class="w-full bg-primary text-on-primary py-2.5 rounded-lg font-label-md text-label-md hover:bg-accent-hover transition-colors flex items-center justify-center space-x-2">
+<span>Add to Booking</span>
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+</button>
+</div>
+</div>
+<!-- Service Card 2 -->
+<div class="bg-surface-high border border-border-soft rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col group">
+<div class="h-48 w-full bg-surface-muted relative overflow-hidden">
+<div class="bg-cover bg-center w-full h-full transform group-hover:scale-105 transition-transform duration-300" data-alt="A detailed, professional photograph of a sleek, modern ceiling fan being installed in a contemporary living room. The focus is on the metallic motor housing and the technician's hands making electrical connections. Soft, warm ambient lighting illuminates the smooth white ceiling, creating a sophisticated and dependable home improvement atmosphere." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCRCjgm1MoxwiJO6FLjrrEQnNmubua4TM-z3PYKZGog-4mnrr4vOE6yiecHiIi_1-4NuiuMJ01AitySxIPt4tAZKVMHRPAfksHOnDs9XiEL78qXH-6WsMY7zyvhJCwMV7-YhRDh5_zf7c0R3-437dfHnBchLXmZsJxS2IKtOlT5-bLRU2EHSKvHXPrz-8dB6-A7YcyJAI8dZBiX-i-dmRHmJ4g1WOnOp_cR3BgMiiIlEzTyPWb3FUsEh7W4v8X37fJvtr5QaYwD8NA')"></div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2 line-clamp-2">Ceiling Fan Installation</h3>
+<div class="flex items-center space-x-1 text-text-secondary mb-4">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span class="font-caption text-caption">45 mins</span>
+</div>
+<div class="mt-auto flex items-center justify-between mb-4">
+<span class="font-headline-md text-headline-md text-primary font-bold">Rs. 800</span>
+</div>
+<button class="w-full bg-primary text-on-primary py-2.5 rounded-lg font-label-md text-label-md hover:bg-accent-hover transition-colors flex items-center justify-center space-x-2">
+<span>Add to Booking</span>
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+</button>
+</div>
+</div>
+<!-- Service Card 3 -->
+<div class="bg-surface-high border border-border-soft rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col group">
+<div class="h-48 w-full bg-surface-muted relative overflow-hidden">
+<div class="bg-cover bg-center w-full h-full transform group-hover:scale-105 transition-transform duration-300" data-alt="A high-quality, brightly lit photograph of a pristine stainless steel kitchen sink. A professional plumber's hands, holding a gleaming wrench, are adjusting the modern chrome faucet. The background features blurred white subway tiles and a clean marble countertop, conveying a sense of premium, hygienic, and expert plumbing repair services." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDn8qYsMWRlQN2SeFdjReboN3GMKsTpI_EWH6ZrA9fj9oAQo07m0HI7HflYjL9TI_sByA6b7JidrOY8EZ2o9wZB6cmCQ9M1uYJlk5lxO-cAP_lL-KxNVmrWf3efYMPz5Lp1hrmMZL52xIjDJq3jhQvKrJEENxassZYAxAlqsJ2HeISNgRIwKygLp6GJyPwozYzNFUp8-3eGWR_hcJbxmJTMVjGoHbSHUqM8s_JRY-aepKp-4tZv9JL9tVRcAsijps_gn50-rK0ZFK0')"></div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2 line-clamp-2">Kitchen Sink Repair</h3>
+<div class="flex items-center space-x-1 text-text-secondary mb-4">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span class="font-caption text-caption">30 mins</span>
+</div>
+<div class="mt-auto flex items-center justify-between mb-4">
+<span class="font-headline-md text-headline-md text-primary font-bold">Rs. 600</span>
+</div>
+<button class="w-full bg-primary text-on-primary py-2.5 rounded-lg font-label-md text-label-md hover:bg-accent-hover transition-colors flex items-center justify-center space-x-2">
+<span>Add to Booking</span>
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+</button>
+</div>
+</div>
+<!-- Service Card 4 -->
+<div class="bg-surface-high border border-border-soft rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col group">
+<div class="h-48 w-full bg-surface-muted relative overflow-hidden">
+<div class="bg-cover bg-center w-full h-full transform group-hover:scale-105 transition-transform duration-300" data-alt="A sharp, professional image showing a well-lit electrical panel board with rows of neatly organized circuit breakers. A technician in a professional uniform is testing a connection with a digital multimeter. The lighting is bright and even, casting subtle shadows to emphasize the depth of the electrical components, highlighting safety and expertise in electrical maintenance." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD-jEkTM365iDBxcNoczikYtm8Ylvc0wy3xIdOdGYJymfHtv1JRMaE4FoWzW-y44sCTiZYKGC3xV9ACL6XIrmq0y_ZB5ofr760nEudr3T0MVGOvALbT76VDCg16N6RMi9EXvH8oGJE7WewNkmJSYswq3zaLqmMJdb8IBYK2d6Qy91QYwqIL2nBMc81pJMsygAG5nXwI2DWR8o6RXxp_AGVYDscCg5n5QUStddPyjYuMWLQN1YJ3iyUHy7aGjFodndmXR1AMYgu7IDk')"></div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2 line-clamp-2">Electrical Panel Inspection</h3>
+<div class="flex items-center space-x-1 text-text-secondary mb-4">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span class="font-caption text-caption">90 mins</span>
+</div>
+<div class="mt-auto flex items-center justify-between mb-4">
+<span class="font-headline-md text-headline-md text-primary font-bold">Rs. 1,500</span>
+</div>
+<button class="w-full bg-primary text-on-primary py-2.5 rounded-lg font-label-md text-label-md hover:bg-accent-hover transition-colors flex items-center justify-center space-x-2">
+<span>Add to Booking</span>
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+</button>
+</div>
+</div>
+<!-- Service Card 5 -->
+<div class="bg-surface-high border border-border-soft rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col group">
+<div class="h-48 w-full bg-surface-muted relative overflow-hidden">
+<div class="bg-cover bg-center w-full h-full transform group-hover:scale-105 transition-transform duration-300" data-alt="A clean, minimalist photo of a modern bathroom setting. The focus is on a newly installed, gleaming white porcelain toilet and a polished chrome bidet attachment. The background consists of subtle, light grey matte tiles. Natural light streams in from a side window, creating a serene, hygienic, and professional plumbing service aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAaS1VmLaiQ_qYIJtlqfqxe5CEfYO4SHFqX_NDWm28aOJ3aUGUdr7HIHub9RKd8DzufwmrM88-1XP1ZIEfj6SJ7mJD5C8b6X4Imu7xU3Fc1g6lSFb8UkWL7g5e3UTLeTLrmI9HjRa3FjNxdUlKKeIKkdZwfzD4oTSrH0ztmMfKVC1j3GCPfg3LcJWaE6CBUm2poYEpiMXYDA3za_8SoyU40vA32tbwIUg2Hbgphh3QtJtR-rVVsMiuG8BVwrBWZOOKCN0mAGniHfRs')"></div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2 line-clamp-2">Toilet Blockage Clearance</h3>
+<div class="flex items-center space-x-1 text-text-secondary mb-4">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span class="font-caption text-caption">45 mins</span>
+</div>
+<div class="mt-auto flex items-center justify-between mb-4">
+<span class="font-headline-md text-headline-md text-primary font-bold">Rs. 900</span>
+</div>
+<button class="w-full bg-primary text-on-primary py-2.5 rounded-lg font-label-md text-label-md hover:bg-accent-hover transition-colors flex items-center justify-center space-x-2">
+<span>Add to Booking</span>
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+</button>
+</div>
+</div>
+<!-- Service Card 6 -->
+<div class="bg-surface-high border border-border-soft rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col group">
+<div class="h-48 w-full bg-surface-muted relative overflow-hidden">
+<div class="bg-cover bg-center w-full h-full transform group-hover:scale-105 transition-transform duration-300" data-alt="A warm, professional interior shot showing a technician maintaining a modern, wall-mounted split air conditioning unit in a cozy, well-lit bedroom. The technician is carefully removing the dust filters. The room has neutral beige walls and soft sunlight filtering through sheer curtains, emphasizing a clean, comfortable, and reliable home cooling service." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA_9azpB2g4QSZypndlrbueB3Nuo3ymdPLPaZAnWb-pX9iVe6ahLv2fMDxYFaghOjeQ1-DrVTuSHqeLjVz84Qyjj0qDH-qPE0sfOGosrtJ7IA2DmrWI07WCTuKvT-O9YmGn-52PvTzPKlXlHMoyxzjnBiaDfd7PtVEg0IPOJQ-yK9_guDcugjaP5PLwzCT0GXwUGYiL-LNmqayX9R0DgIluiwiKNfjWhFrHmZunTFDuH0jeqstmzpzG7pIng2ECbz6fk0jgJPKGFMg')"></div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2 line-clamp-2">AC Gas Refill</h3>
+<div class="flex items-center space-x-1 text-text-secondary mb-4">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span class="font-caption text-caption">120 mins</span>
+</div>
+<div class="mt-auto flex items-center justify-between mb-4">
+<span class="font-headline-md text-headline-md text-primary font-bold">Rs. 3,200</span>
+</div>
+<button class="w-full bg-primary text-on-primary py-2.5 rounded-lg font-label-md text-label-md hover:bg-accent-hover transition-colors flex items-center justify-center space-x-2">
+<span>Add to Booking</span>
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low dark:bg-inverse-surface border-t border-border-soft dark:border-outline-variant w-full mt-auto">
+<div class="py-12 px-margin-x max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-gap-standard">
+<!-- Brand -->
+<div class="font-headline-md text-headline-md text-on-surface dark:text-inverse-on-surface">
+                FixIt
+            </div>
+<!-- Links -->
+<div class="flex flex-wrap justify-center gap-6">
+<a class="font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors duration-200" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors duration-200" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors duration-200" href="#">Help Center</a>
+<a class="font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors duration-200" href="#">Become a Professional</a>
+</div>
+<!-- Copyright -->
+<div class="font-caption text-caption text-secondary dark:text-secondary-fixed-dim">
+                © 2024 FixIt Home Services. All rights reserved.
+            </div>
+</div>
+</footer>
+</body></html>

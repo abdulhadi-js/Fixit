@@ -1,0 +1,233 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>FixIt - Verify Your Account</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#47464a",
+                        "on-tertiary-fixed-variant": "#7f2928",
+                        "surface-high": "#FFFFFF",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed-dim": "#ffb3ae",
+                        "surface-container-low": "#eff5ef",
+                        "surface-container-high": "#e4eae4",
+                        "primary": "#006948",
+                        "outline-variant": "#bccac0",
+                        "background": "#f5fbf5",
+                        "tertiary": "#9b3e3b",
+                        "surface": "#f5fbf5",
+                        "outline": "#6d7a72",
+                        "surface-container-highest": "#dee4de",
+                        "on-primary-fixed-variant": "#005137",
+                        "canvas": "#FAFAFA",
+                        "on-tertiary-fixed": "#410004",
+                        "text-primary": "#18181B",
+                        "tertiary-container": "#ba5551",
+                        "on-secondary-container": "#656467",
+                        "inverse-primary": "#68dba9",
+                        "border-soft": "#E4E4E7",
+                        "surface-variant": "#dee4de",
+                        "surface-bright": "#f5fbf5",
+                        "surface-dim": "#d5dcd6",
+                        "accent-hover": "#047857",
+                        "on-surface": "#171d19",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "primary-container": "#00855d",
+                        "surface-tint": "#006c4a",
+                        "primary-fixed-dim": "#68dba9",
+                        "secondary-fixed-dim": "#c8c5ca",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#1b1b1e",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#3d4a42",
+                        "text-secondary": "#71717A",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#e9efe9",
+                        "on-primary-fixed": "#002114",
+                        "inverse-on-surface": "#ecf2ec",
+                        "secondary": "#5f5e61",
+                        "on-primary-container": "#f5fff7",
+                        "surface-muted": "#F4F4F5",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#85f8c4",
+                        "on-tertiary-container": "#fffbff",
+                        "tertiary-fixed": "#ffdad7",
+                        "secondary-container": "#e4e1e6",
+                        "on-error": "#ffffff",
+                        "on-background": "#171d19",
+                        "inverse-surface": "#2c322e",
+                        "secondary-fixed": "#e4e1e6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gap-standard": "1.5rem",
+                        "container-max": "1280px",
+                        "gutter": "1.5rem",
+                        "margin-x": "2rem",
+                        "gap-tight": "1rem"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Geist"],
+                        "body-md": ["Geist"],
+                        "headline-lg-mobile": ["Geist"],
+                        "label-md": ["Geist"],
+                        "caption": ["Geist"],
+                        "headline-lg": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.025em", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "headline-lg": ["30px", {"lineHeight": "36px", "letterSpacing": "-0.025em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Geist', sans-serif;
+            background-color: #FAFAFA; /* Theme Canvas */
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        /* Custom hide spin buttons for OTP inputs */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
+</head>
+<body class="bg-canvas min-h-screen flex flex-col">
+<!-- TopNavBar (Shared Component) -->
+
+<!-- Main Content -->
+<main class="flex-grow flex items-center justify-center pt-16 px-gutter">
+<!-- Central Content: Bento Card -->
+<div class="w-full max-w-md bg-surface-high rounded-xl p-8 border border-border-soft shadow-sm my-20 animate-in fade-in slide-in-from-bottom-4 duration-700">
+<!-- Header Section -->
+<div class="text-center mb-8">
+<div class="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-full bg-surface-container-low text-primary">
+<span class="material-symbols-outlined text-[32px]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-text-primary mb-2">Verify your account</h1>
+<p class="font-body-md text-body-md text-text-secondary">
+                    We've sent a 6-digit code to your phone number <span class="font-medium text-text-primary">+92 3XX XXXXXXX</span>
+</p>
+</div>
+<!-- OTP Form -->
+<form class="space-y-8" id="otp-form">
+<!-- OTP Grid -->
+<div class="flex justify-between gap-2 md:gap-3" id="otp-inputs">
+<input class="otp-input w-12 h-14 bg-surface-muted border border-border-soft text-center text-xl font-semibold focus:border-primary focus:ring-1 focus:ring-primary rounded-lg transition-all outline-none" maxlength="1" required="" type="number">
+<input class="otp-input w-12 h-14 bg-surface-muted border border-border-soft text-center text-xl font-semibold focus:border-primary focus:ring-1 focus:ring-primary rounded-lg transition-all outline-none" maxlength="1" required="" type="number">
+<input class="otp-input w-12 h-14 bg-surface-muted border border-border-soft text-center text-xl font-semibold focus:border-primary focus:ring-1 focus:ring-primary rounded-lg transition-all outline-none" maxlength="1" required="" type="number">
+<input class="otp-input w-12 h-14 bg-surface-muted border border-border-soft text-center text-xl font-semibold focus:border-primary focus:ring-1 focus:ring-primary rounded-lg transition-all outline-none" maxlength="1" required="" type="number">
+<input class="otp-input w-12 h-14 bg-surface-muted border border-border-soft text-center text-xl font-semibold focus:border-primary focus:ring-1 focus:ring-primary rounded-lg transition-all outline-none" maxlength="1" required="" type="number">
+<input class="otp-input w-12 h-14 bg-surface-muted border border-border-soft text-center text-xl font-semibold focus:border-primary focus:ring-1 focus:ring-primary rounded-lg transition-all outline-none" maxlength="1" required="" type="number">
+</div>
+<!-- Action Button -->
+<button class="w-full bg-primary hover:bg-accent-hover text-on-primary font-label-md text-label-md py-4 rounded-lg shadow-sm transition-all duration-200 active:scale-[0.98] focus:ring-2 focus:ring-offset-2 focus:ring-primary" type="submit">
+                    Verify &amp; Continue
+                </button>
+</form>
+<!-- Resend Section -->
+<div class="mt-8 text-center">
+<p class="font-caption text-caption text-text-secondary">
+                    Didn't receive the code? 
+                    <span class="ml-1" id="resend-timer-text">Resend in <span class="font-medium text-text-primary" id="timer">0:32</span></span>
+<button class="hidden ml-1 text-primary font-medium hover:underline opacity-50 cursor-not-allowed transition-all" disabled="" id="resend-btn">Resend</button>
+</p>
+</div>
+</div>
+</main>
+<!-- Footer (Shared Component) -->
+
+<script>
+        // OTP Input Logic
+        const inputs = document.querySelectorAll('.otp-input');
+        
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                if (e.target.value.length > 1) {
+                    e.target.value = e.target.value.slice(0, 1);
+                }
+                if (e.target.value !== '' && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+            });
+
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && e.target.value === '' && index > 0) {
+                    inputs[index - 1].focus();
+                }
+            });
+        });
+
+        // Timer Logic
+        let timeLeft = 59;
+        const timerElement = document.getElementById('timer');
+        const timerText = document.getElementById('resend-timer-text');
+        const resendBtn = document.getElementById('resend-btn');
+
+        const countdown = setInterval(() => {
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                timerText.classList.add('hidden');
+                resendBtn.classList.remove('hidden');
+                resendBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                resendBtn.classList.add('cursor-pointer');
+                resendBtn.disabled = false;
+            } else {
+                let seconds = timeLeft < 10 ? '0' + timeLeft : timeLeft;
+                timerElement.innerText = `0:${seconds}`;
+                timeLeft--;
+            }
+        }, 1000);
+
+        // Form Submit
+        document.getElementById('otp-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const otp = Array.from(inputs).map(input => input.value).join('');
+            if (otp.length === 6) {
+                // Visual feedback for success
+                const btn = e.target.querySelector('button');
+                btn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span>';
+                setTimeout(() => {
+                    btn.innerHTML = 'Success!';
+                    btn.classList.replace('bg-primary', 'bg-emerald-500');
+                }, 1500);
+            }
+        });
+    </script>
+
+
+</body></html>

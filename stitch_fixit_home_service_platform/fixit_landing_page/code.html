@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FixIt - Home Services</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-primary-fixed-variant": "#005137",
+                        "inverse-primary": "#68dba9",
+                        "background": "#f5fbf5",
+                        "outline-variant": "#bccac0",
+                        "tertiary-fixed-dim": "#ffb3ae",
+                        "canvas": "#FAFAFA",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#f5fbf5",
+                        "primary": "#006948",
+                        "surface-container-highest": "#dee4de",
+                        "surface": "#f5fbf5",
+                        "error-container": "#ffdad6",
+                        "surface-muted": "#F4F4F5",
+                        "inverse-surface": "#2c322e",
+                        "surface-high": "#FFFFFF",
+                        "surface-dim": "#d5dcd6",
+                        "on-error": "#ffffff",
+                        "tertiary": "#9b3e3b",
+                        "outline": "#6d7a72",
+                        "on-tertiary-fixed-variant": "#7f2928",
+                        "on-surface": "#171d19",
+                        "surface-container": "#e9efe9",
+                        "secondary": "#5f5e61",
+                        "text-secondary": "#71717A",
+                        "secondary-container": "#e4e1e6",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-container": "#fffbff",
+                        "border-soft": "#E4E4E7",
+                        "on-secondary-container": "#656467",
+                        "surface-container-high": "#e4eae4",
+                        "primary-container": "#00855d",
+                        "surface-tint": "#006c4a",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed": "#002114",
+                        "surface-container-low": "#eff5ef",
+                        "inverse-on-surface": "#ecf2ec",
+                        "on-background": "#171d19",
+                        "accent-hover": "#047857",
+                        "text-primary": "#18181B",
+                        "primary-fixed": "#85f8c4",
+                        "tertiary-container": "#ba5551",
+                        "on-secondary-fixed-variant": "#47464a",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed": "#e4e1e6",
+                        "secondary-fixed-dim": "#c8c5ca",
+                        "tertiary-fixed": "#ffdad7",
+                        "on-tertiary-fixed": "#410004",
+                        "surface-variant": "#dee4de",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed": "#1b1b1e",
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#68dba9",
+                        "on-primary-container": "#f5fff7",
+                        "on-surface-variant": "#3d4a42"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "margin-x": "2rem",
+                        "gutter": "1.5rem",
+                        "gap-tight": "1rem",
+                        "container-max": "1280px",
+                        "gap-standard": "1.5rem"
+                    },
+                    fontFamily: {
+                        "headline-md": ["Geist", "sans-serif"],
+                        "headline-lg-mobile": ["Geist", "sans-serif"],
+                        "caption": ["Geist", "sans-serif"],
+                        "body-md": ["Geist", "sans-serif"],
+                        "headline-lg": ["Geist", "sans-serif"],
+                        "label-md": ["Geist", "sans-serif"]
+                    },
+                    fontSize: {
+                        "headline-md": ["20px", { lineHeight: "28px", fontWeight: "600" }],
+                        "headline-lg-mobile": ["24px", { lineHeight: "32px", letterSpacing: "-0.025em", fontWeight: "700" }],
+                        "caption": ["12px", { lineHeight: "16px", fontWeight: "400" }],
+                        "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "headline-lg": ["30px", { lineHeight: "36px", letterSpacing: "-0.025em", fontWeight: "700" }],
+                        "label-md": ["14px", { lineHeight: "20px", fontWeight: "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        [data-weight="fill"] {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface-high dark:bg-inverse-surface fixed top-0 w-full border-b border-border-soft dark:border-outline-variant flat no shadows z-50">
+<div class="flex justify-between items-center h-16 px-margin-x max-w-container-max mx-auto">
+<!-- Brand Logo -->
+<a class="text-headline-lg font-headline-lg text-on-surface dark:text-inverse-on-surface tracking-tight" href="#">FixIt</a>
+<!-- Search Bar (Centered, Rounded Full) -->
+<div class="hidden md:flex flex-1 justify-center px-8">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-secondary" data-icon="search">search</span>
+<input class="w-full bg-surface-muted dark:bg-surface-variant border border-border-soft dark:border-outline-variant rounded-full py-2 pl-12 pr-4 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors text-body-md font-body-md placeholder-secondary text-text-primary" placeholder="What do you need help with?" type="text"/>
+</div>
+</div>
+<!-- Trailing Action -->
+<div class="flex items-center gap-4">
+<button class="text-label-md font-label-md text-primary dark:text-primary-fixed-dim hover:text-accent-hover transition-colors">Sign In</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-24 pb-16 px-margin-x max-w-container-max mx-auto w-full">
+<!-- Hero Section -->
+<section class="text-center py-16 md:py-24 max-w-3xl mx-auto flex flex-col items-center justify-center space-y-8">
+<h1 class="text-4xl md:text-5xl lg:text-[56px] leading-tight font-headline-lg text-on-surface tracking-tight text-balance">
+                Upfront Pricing. Verified Professionals. Zero Stress.
+            </h1>
+<!-- Elevated Search Input -->
+<div class="w-full max-w-2xl relative shadow-[0_4px_24px_rgba(0,0,0,0.06)] rounded-xl bg-surface-high border border-border-soft flex items-center p-2 mt-4 hover:shadow-[0_8px_32px_rgba(0,0,0,0.08)] transition-shadow duration-300">
+<span class="material-symbols-outlined text-secondary ml-4 mr-2" data-icon="search" style="font-size: 28px;">search</span>
+<input class="flex-grow bg-transparent border-none focus:ring-0 text-headline-md font-headline-md placeholder:text-secondary placeholder:font-normal py-4 px-2 text-text-primary h-14" placeholder="Search for AC repair, plumbing, cleaning..." type="text"/>
+<button class="bg-primary hover:bg-accent-hover text-on-primary font-label-md text-label-md rounded-lg px-8 py-3 h-12 transition-colors ml-2 whitespace-nowrap">
+                    Find Pro
+                </button>
+</div>
+</section>
+<!-- Trust Banner -->
+<div class="max-w-4xl mx-auto flex flex-wrap justify-center items-center gap-8 md:gap-16 py-8 border-y border-border-soft mb-16 text-secondary">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="verified_user">verified_user</span>
+<span class="font-label-md text-label-md">Verified Workers</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="price_check">price_check</span>
+<span class="font-label-md text-label-md">Fixed Price Guarantee</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="schedule">schedule</span>
+<span class="font-label-md text-label-md">On-Time Service</span>
+</div>
+</div>
+<!-- Bento Grid Services -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Card 1: Large (Spans 2 columns) -->
+<div class="md:col-span-2 bg-surface-high rounded-xl border border-border-soft p-6 flex flex-col justify-between hover:shadow-[0_4px_20px_rgba(0,0,0,0.04)] transition-all duration-300 group cursor-pointer h-80 relative overflow-hidden">
+<div class="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity duration-500" data-alt="A clean, modern air conditioning unit installed high on a pristine white wall in a sunlit, minimalist living room. The room is decorated in a quiet luxury style with a soft, natural color palette, featuring a subtle hint of emerald green in a nearby potted plant. High key lighting, sharp focus, professional interior photography emphasizing neatness and calm." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDMii8oIzZkpNdyLJDCYkyefa7H2RoRW6xyOA9gQvjew0O1WQplOELYR9OaDEgJJjfx2iZ4ot9xoJQq269v2ztfPMg972qfTJgSey_FvyZ4TajS-l9pPbS6OQfbs0mpK3RomJDIX2e25BXeErfuVMJc2BC0fGOpEQ3kcY7GUaJbsMtNAqDSujbOQNcc4bqvJYyPV1UboHuH9OXLFOupbCaM_51fLvEfg4k9EltIJsJb48Lv2vemCEYK0AIftAvDiQ4XaA7S-YzrwxU')"></div>
+<div class="relative z-10 flex justify-between items-start">
+<div class="p-3 bg-surface-muted rounded-lg inline-block group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
+<span class="material-symbols-outlined text-2xl" data-icon="ac_unit">ac_unit</span>
+</div>
+<span class="bg-surface-muted text-text-primary font-caption text-caption px-3 py-1 rounded-full border border-border-soft group-hover:border-primary-fixed transition-colors">Popular</span>
+</div>
+<div class="relative z-10 mt-auto">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2 group-hover:text-primary transition-colors">AC Services</h3>
+<div class="flex justify-between items-center bg-surface-high/80 backdrop-blur-sm p-4 rounded-lg border border-border-soft">
+<span class="font-body-md text-body-md text-text-secondary">1.5 Ton AC Deep Clean</span>
+<span class="font-headline-md text-headline-md text-primary">Rs. 2500</span>
+</div>
+</div>
+</div>
+<!-- Card 2: Electrical -->
+<div class="bg-surface-high rounded-xl border border-border-soft p-6 flex flex-col justify-between hover:shadow-[0_4px_20px_rgba(0,0,0,0.04)] transition-all duration-300 group cursor-pointer h-80">
+<div class="p-3 bg-surface-muted rounded-lg inline-block w-max group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
+<span class="material-symbols-outlined text-2xl" data-icon="electrical_services">electrical_services</span>
+</div>
+<div class="mt-auto">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4 group-hover:text-primary transition-colors">Electrical</h3>
+<div class="flex flex-col gap-2 border-t border-border-soft pt-4">
+<span class="font-body-md text-body-md text-text-secondary">Ceiling Fan Installation</span>
+<span class="font-headline-md text-headline-md text-on-surface">Rs. 800</span>
+</div>
+</div>
+</div>
+<!-- Card 3: Plumbing -->
+<div class="bg-surface-high rounded-xl border border-border-soft p-6 flex flex-col justify-between hover:shadow-[0_4px_20px_rgba(0,0,0,0.04)] transition-all duration-300 group cursor-pointer h-64">
+<div class="p-3 bg-surface-muted rounded-lg inline-block w-max group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
+<span class="material-symbols-outlined text-2xl" data-icon="plumbing">plumbing</span>
+</div>
+<div class="mt-auto flex justify-between items-end">
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">Plumbing</h3>
+<span class="material-symbols-outlined text-secondary group-hover:text-primary transition-transform group-hover:translate-x-1" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+<!-- Card 4: Cleaning -->
+<div class="md:col-span-2 bg-surface-high rounded-xl border border-border-soft p-6 flex flex-col justify-between hover:shadow-[0_4px_20px_rgba(0,0,0,0.04)] transition-all duration-300 group cursor-pointer h-64 relative overflow-hidden">
+<div class="absolute right-0 bottom-0 w-1/2 h-full opacity-10 group-hover:opacity-20 transition-opacity duration-500 bg-cover bg-left" data-alt="A pristine, meticulously clean modern bathroom featuring white marble tiles, a frameless glass shower, and brushed nickel fixtures. The aesthetic is bright, airy, and luxurious, conveying a sense of perfect hygiene and professional cleaning standards. Soft, diffused lighting highlights the sparkling clean surfaces." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBbzhvpCJjSg-Zq8SbceHeqbAbu7XdcrHWHUfrXXPXKgNOlt1QqeOLCi6GzZ_PnXI1Ou6-OnqkSStppbNY-uO9D1zIPm9tRebl62cO9mXk6m5vigEUdqUYlv_oHq8ZUi97x2AH0QE1Hlh-fN2ovIl1_Qx3fUi7Ak4_OLa1qXJMxXChX6pLARzJ8c8o188zuzhGasupHvLXewlkefxcJ0WovwYvCAFppj2kBO0gSbL6eXTVc7BGca1Y8gT_GnWziO0B-snv9NMIc7Hg')"></div>
+<div class="relative z-10">
+<div class="p-3 bg-surface-muted rounded-lg inline-block w-max group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
+<span class="material-symbols-outlined text-2xl" data-icon="cleaning_services">cleaning_services</span>
+</div>
+</div>
+<div class="relative z-10 mt-auto flex justify-between items-end w-full md:w-1/2 pr-4">
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">Deep Cleaning</h3>
+<span class="material-symbols-outlined text-secondary group-hover:text-primary transition-transform group-hover:translate-x-1" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</section>
+<!-- View All Services Link -->
+<div class="mt-12 text-center">
+<a class="inline-flex items-center justify-center gap-2 font-label-md text-label-md text-primary hover:text-accent-hover transition-colors group p-2" href="#">
+                View All Services
+                <span class="material-symbols-outlined text-xl transition-transform group-hover:translate-x-1" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low dark:bg-inverse-surface w-full border-t border-border-soft dark:border-outline-variant flat no shadows mt-auto">
+<div class="py-12 px-margin-x max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-gap-standard">
+<!-- Brand & Copyright -->
+<div class="flex flex-col items-center md:items-start gap-2">
+<span class="font-headline-md text-headline-md text-on-surface dark:text-inverse-on-surface tracking-tight">FixIt</span>
+<span class="font-caption text-caption text-secondary dark:text-secondary-fixed-dim">© 2024 FixIt Home Services. All rights reserved.</span>
+</div>
+<!-- Navigation Links -->
+<nav class="flex flex-wrap justify-center gap-x-8 gap-y-4">
+<a class="font-label-md text-label-md text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors duration-200 hover:opacity-80" href="#">Privacy Policy</a>
+<a class="font-label-md text-label-md text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors duration-200 hover:opacity-80" href="#">Terms of Service</a>
+<a class="font-label-md text-label-md text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors duration-200 hover:opacity-80" href="#">Help Center</a>
+<a class="font-label-md text-label-md text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors duration-200 hover:opacity-80" href="#">Become a Professional</a>
+</nav>
+</div>
+</footer>
+</body></html>

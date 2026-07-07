@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FixIt Pro - Technician Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-container": "#fffbff",
+                      "surface-dim": "#d5dcd6",
+                      "surface-container-highest": "#dee4de",
+                      "secondary-fixed": "#e4e1e6",
+                      "on-surface-variant": "#3d4a42",
+                      "surface-tint": "#006c4a",
+                      "on-secondary": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "surface-container-low": "#eff5ef",
+                      "background": "#f5fbf5",
+                      "inverse-surface": "#2c322e",
+                      "tertiary-fixed": "#ffdad7",
+                      "text-secondary": "#71717A",
+                      "on-primary-container": "#f5fff7",
+                      "surface-container-high": "#e4eae4",
+                      "inverse-primary": "#68dba9",
+                      "primary": "#006948",
+                      "primary-container": "#00855d",
+                      "on-background": "#171d19",
+                      "secondary-fixed-dim": "#c8c5ca",
+                      "primary-fixed": "#85f8c4",
+                      "on-secondary-fixed-variant": "#47464a",
+                      "outline-variant": "#bccac0",
+                      "surface-variant": "#dee4de",
+                      "inverse-on-surface": "#ecf2ec",
+                      "error": "#ba1a1a",
+                      "surface-high": "#FFFFFF",
+                      "tertiary-fixed-dim": "#ffb3ae",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary-fixed": "#410004",
+                      "text-primary": "#18181B",
+                      "on-tertiary": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "on-secondary-fixed": "#1b1b1e",
+                      "on-primary-fixed-variant": "#005137",
+                      "on-surface": "#171d19",
+                      "outline": "#6d7a72",
+                      "surface-bright": "#f5fbf5",
+                      "accent-hover": "#047857",
+                      "border-soft": "#E4E4E7",
+                      "surface": "#f5fbf5",
+                      "on-primary-fixed": "#002114",
+                      "secondary": "#5f5e61",
+                      "canvas": "#FAFAFA",
+                      "secondary-container": "#e4e1e6",
+                      "surface-container": "#e9efe9",
+                      "tertiary": "#9b3e3b",
+                      "surface-muted": "#F4F4F5",
+                      "tertiary-container": "#ba5551",
+                      "primary-fixed-dim": "#68dba9",
+                      "on-tertiary-fixed-variant": "#7f2928",
+                      "on-error-container": "#93000a",
+                      "on-error": "#ffffff",
+                      "on-secondary-container": "#656467"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "1.5rem",
+                      "margin-x": "2rem",
+                      "gap-standard": "1.5rem",
+                      "container-max": "1280px",
+                      "gap-tight": "1rem"
+              },
+              "fontFamily": {
+                      "label-md": [
+                              "Geist"
+                      ],
+                      "caption": [
+                              "Geist"
+                      ],
+                      "body-md": [
+                              "Geist"
+                      ],
+                      "headline-md": [
+                              "Geist"
+                      ],
+                      "headline-lg-mobile": [
+                              "Geist"
+                      ],
+                      "headline-lg": [
+                              "Geist"
+                      ]
+              },
+              "fontSize": {
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "caption": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.025em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg": [
+                              "30px",
+                              {
+                                      "lineHeight": "36px",
+                                      "letterSpacing": "-0.025em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+</head>
+<body class="bg-canvas text-on-surface font-body-md h-screen flex flex-col md:flex-row overflow-hidden">
+<!-- Mobile Nav (TopAppBar from JSON adapted for mobile) -->
+<nav class="md:hidden bg-surface-high border-b border-border-soft flex justify-between items-center h-16 px-margin-x w-full z-50">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">handyman</span>
+<span class="font-headline-md text-headline-md text-on-surface font-bold">FixIt Pro</span>
+</div>
+<button class="text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</nav>
+<!-- Sidebar (Desktop) -->
+<aside class="hidden md:flex flex-col w-64 bg-surface-high border-r border-border-soft h-full z-40 relative">
+<div class="p-6 border-b border-border-soft">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-2xl">handyman</span>
+<span class="font-headline-md text-headline-md text-on-surface font-bold tracking-tight">FixIt Pro</span>
+</div>
+</div>
+<nav class="flex-1 py-6 px-4 space-y-2 overflow-y-auto">
+<!-- Active: Agenda -->
+<a class="flex items-center gap-3 px-4 py-3 bg-surface-container text-primary font-label-md text-label-md rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">calendar_today</span>
+                Agenda
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-muted hover:text-primary font-label-md text-label-md rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined">payments</span>
+                Earnings
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-muted hover:text-primary font-label-md text-label-md rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+                Profile
+            </a>
+</nav>
+<div class="p-4 border-t border-border-soft">
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-muted hover:text-error font-label-md text-label-md rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+                Logout
+            </a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto bg-canvas p-4 md:p-8">
+<div class="max-w-container-max mx-auto">
+<!-- Header -->
+<header class="mb-8">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Today's Agenda</h1>
+<p class="font-body-md text-body-md text-secondary mt-1">Tuesday, 14 July</p>
+</header>
+<!-- Stats/Summary Bento row -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+<div class="bg-surface-high border border-border-soft rounded-lg p-4 flex flex-col justify-center items-start shadow-sm">
+<span class="font-caption text-caption text-secondary uppercase tracking-wider">Jobs Today</span>
+<span class="font-headline-md text-headline-md text-primary mt-1">4</span>
+</div>
+<div class="bg-surface-high border border-border-soft rounded-lg p-4 flex flex-col justify-center items-start shadow-sm">
+<span class="font-caption text-caption text-secondary uppercase tracking-wider">Completed</span>
+<span class="font-headline-md text-headline-md text-on-surface mt-1">1</span>
+</div>
+<div class="bg-surface-high border border-border-soft rounded-lg p-4 flex flex-col justify-center items-start shadow-sm">
+<span class="font-caption text-caption text-secondary uppercase tracking-wider">Est. Earnings</span>
+<span class="font-headline-md text-headline-md text-on-surface mt-1">$450</span>
+</div>
+</div>
+<!-- Job Cards Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+<!-- Completed Job -->
+<article class="bg-surface-high border border-border-soft rounded-xl p-6 shadow-sm flex flex-col opacity-60">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-2 text-secondary font-label-md text-label-md">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                            08:00 AM - 09:00 AM
+                        </div>
+<span class="bg-surface-container-highest text-on-surface-variant px-2 py-1 rounded text-xs font-medium">Completed</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Water Heater Inspection</h3>
+<div class="flex items-start gap-2 text-secondary font-body-md text-body-md mb-6 flex-1">
+<span class="material-symbols-outlined text-base mt-1">location_on</span>
+<span>123 Maple Street, Apt 4B<br/>Springfield</span>
+</div>
+<button class="w-full py-3 border border-border-soft rounded-lg text-secondary font-label-md text-label-md text-center bg-surface-muted cursor-not-allowed" disabled="">
+                        View Details
+                    </button>
+</article>
+<!-- Next Job -->
+<article class="bg-surface-high border-2 border-primary-container rounded-xl p-6 shadow-sm flex flex-col relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary-container"></div>
+<div class="flex justify-between items-start mb-4 pl-2">
+<div class="flex items-center gap-2 text-primary-container font-label-md text-label-md font-bold">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                            09:00 AM - 11:00 AM
+                        </div>
+<span class="bg-primary-container text-on-primary-container px-2 py-1 rounded text-xs font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">directions_car</span>
+                            En Route
+                        </span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2 pl-2">1.5 Ton AC Deep Clean</h3>
+<div class="flex items-start gap-2 text-secondary font-body-md text-body-md mb-6 flex-1 pl-2">
+<span class="material-symbols-outlined text-base mt-1">location_on</span>
+<span>456 Oak Avenue, Unit 12<br/>Northside</span>
+</div>
+<button class="w-full py-3 border border-border-soft rounded-lg text-primary font-label-md text-label-md flex justify-center items-center gap-2 hover:border-primary transition-colors group">
+                        Open Workspace 
+                        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</article>
+<!-- Upcoming Job 1 -->
+<article class="bg-surface-high border border-border-soft rounded-xl p-6 shadow-sm flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-2 text-secondary font-label-md text-label-md">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                            01:00 PM - 02:30 PM
+                        </div>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Washing Machine Repair</h3>
+<div class="flex items-start gap-2 text-secondary font-body-md text-body-md mb-6 flex-1">
+<span class="material-symbols-outlined text-base mt-1">location_on</span>
+<span>789 Pine Road<br/>West End</span>
+</div>
+<button class="w-full py-3 border border-border-soft rounded-lg text-on-surface font-label-md text-label-md flex justify-center items-center gap-2 hover:border-primary hover:text-primary transition-colors group">
+                        Open Workspace 
+                        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</article>
+<!-- Upcoming Job 2 -->
+<article class="bg-surface-high border border-border-soft rounded-xl p-6 shadow-sm flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-2 text-secondary font-label-md text-label-md">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                            03:00 PM - 05:00 PM
+                        </div>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Plumbing: Leak Detection</h3>
+<div class="flex items-start gap-2 text-secondary font-body-md text-body-md mb-6 flex-1">
+<span class="material-symbols-outlined text-base mt-1">location_on</span>
+<span>101 Elm Street, Suite 500<br/>Downtown</span>
+</div>
+<button class="w-full py-3 border border-border-soft rounded-lg text-on-surface font-label-md text-label-md flex justify-center items-center gap-2 hover:border-primary hover:text-primary transition-colors group">
+                        Open Workspace 
+                        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</article>
+</div>
+</div>
+</main>
+</body></html>

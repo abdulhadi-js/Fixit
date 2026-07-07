@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Checkout - FixIt</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .font-headline-lg { font-family: 'Geist', sans-serif; }
+            .font-headline-md { font-family: 'Geist', sans-serif; }
+            .font-body-md { font-family: 'Geist', sans-serif; }
+            .font-label-md { font-family: 'Geist', sans-serif; }
+            .font-caption { font-family: 'Geist', sans-serif; }
+            
+            .text-headline-lg { font-size: 30px; line-height: 36px; letter-spacing: -0.025em; font-weight: 700; }
+            .text-headline-md { font-size: 20px; line-height: 28px; font-weight: 600; }
+            .text-body-md { font-size: 16px; line-height: 24px; font-weight: 400; }
+            .text-label-md { font-size: 14px; line-height: 20px; font-weight: 500; }
+            .text-caption { font-size: 12px; line-height: 16px; font-weight: 400; }
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-primary-fixed": "#002114",
+                        "surface-tint": "#006c4a",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#dee4de",
+                        "surface-container-low": "#eff5ef",
+                        "tertiary-container": "#ba5551",
+                        "on-secondary-fixed": "#1b1b1e",
+                        "secondary": "#5f5e61",
+                        "inverse-surface": "#2c322e",
+                        "on-tertiary-fixed": "#410004",
+                        "surface-muted": "#F4F4F5",
+                        "inverse-primary": "#68dba9",
+                        "primary": "#006948",
+                        "canvas": "#FAFAFA",
+                        "surface-high": "#FFFFFF",
+                        "tertiary-fixed": "#ffdad7",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#ecf2ec",
+                        "on-error": "#ffffff",
+                        "on-secondary-container": "#656467",
+                        "tertiary-fixed-dim": "#ffb3ae",
+                        "on-background": "#171d19",
+                        "secondary-container": "#e4e1e6",
+                        "outline": "#6d7a72",
+                        "accent-hover": "#047857",
+                        "primary-container": "#00855d",
+                        "on-primary-container": "#f5fff7",
+                        "on-tertiary-fixed-variant": "#7f2928",
+                        "secondary-fixed": "#e4e1e6",
+                        "outline-variant": "#bccac0",
+                        "on-primary-fixed-variant": "#005137",
+                        "primary-fixed": "#85f8c4",
+                        "on-tertiary": "#ffffff",
+                        "text-secondary": "#71717A",
+                        "on-tertiary-container": "#fffbff",
+                        "tertiary": "#9b3e3b",
+                        "surface-container-high": "#e4eae4",
+                        "primary-fixed-dim": "#68dba9",
+                        "on-surface": "#171d19",
+                        "secondary-fixed-dim": "#c8c5ca",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#3d4a42",
+                        "surface-dim": "#d5dcd6",
+                        "on-error-container": "#93000a",
+                        "text-primary": "#18181B",
+                        "border-soft": "#E4E4E7",
+                        "background": "#f5fbf5",
+                        "surface-bright": "#f5fbf5",
+                        "on-secondary-fixed-variant": "#47464a",
+                        "surface-container": "#e9efe9",
+                        "surface-variant": "#dee4de",
+                        "surface": "#f5fbf5",
+                        "on-primary": "#ffffff"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "margin-x": "2rem",
+                        "container-max": "1280px",
+                        "gutter": "1.5rem",
+                        "gap-standard": "1.5rem",
+                        "gap-tight": "1rem"
+                    },
+                    fontFamily: {
+                        "headline-lg": ["Geist"],
+                        "label-md": ["Geist"],
+                        "body-md": ["Geist"],
+                        "caption": ["Geist"],
+                        "headline-md": ["Geist"]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-canvas text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface-high fixed top-0 w-full z-50 border-b border-border-soft">
+<div class="flex justify-between items-center h-16 px-margin-x max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<a class="text-headline-lg font-headline-lg text-on-surface" href="#">FixIt</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md text-label-md hover:bg-accent-hover transition-colors">Sign In</button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow pt-24 pb-16 px-margin-x">
+<div class="max-w-4xl mx-auto">
+<div class="mb-8">
+<h1 class="text-headline-lg font-headline-lg text-on-surface">Secure Checkout</h1>
+<p class="text-text-secondary mt-2">Complete your booking securely.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Order Summary Card -->
+<div class="bg-surface-high border border-border-soft rounded-xl p-6 shadow-sm flex flex-col gap-6">
+<div>
+<h2 class="text-headline-md font-headline-md text-on-surface mb-4">Order Summary</h2>
+<div class="flex items-start gap-4 mb-4">
+<div class="w-16 h-16 rounded-lg bg-surface-muted overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A clean, modern professional air conditioning unit inside a well-lit minimalist residential living room. The style is bright and high-key, conveying a sense of fresh air and professional home maintenance. Emerald green accents subtly highlight the fresh, clean atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHFew7Pg3S27NnkuGed6XYH2NPDAQU_QHSGu3c0duPNbOeOtHvf0sCCZDOem45cppEsAf3fEsDs_CXu1HPpLgHkzfyxdPOb9ZNXSsfuYO9jqT_YgU956TZxccP_ezFGCrEyD95TJBYlB5Sfx381bKNx0muAfBsOdWDzCtg2-ICjexqss_PMfStos0AnncdVSacosYt2UP7L9brf1aaW5wRCg89SVGRd68X6eFrxT6miE82jqH4hmsUdjAQAdAOAxBesmhD3RW3srs"/>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-surface">1.5 Ton AC Deep Clean</h3>
+<p class="text-text-secondary text-sm mt-1">Scheduled: July 15 @ 11:00 AM</p>
+<p class="text-text-secondary text-sm">Address: Block 6, PECHS</p>
+</div>
+</div>
+</div>
+<div class="border-t border-border-soft pt-4">
+<div class="flex justify-between text-text-secondary mb-2">
+<span>Subtotal</span>
+<span>Rs. 2,500</span>
+</div>
+<div class="flex justify-between text-text-secondary mb-4">
+<span>Taxes & Fees</span>
+<span>Rs. 150</span>
+</div>
+<div class="flex justify-between text-on-surface font-headline-md text-headline-md border-t border-border-soft pt-4">
+<span>Total</span>
+<span>Rs. 2,650</span>
+</div>
+</div>
+</div>
+<!-- Payment Details Card -->
+<div class="bg-surface-high border border-border-soft rounded-xl p-6 shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-headline-md font-headline-md text-on-surface">Payment Details</h2>
+<div class="flex items-center gap-1 text-primary bg-primary-container/10 px-2 py-1 rounded-md text-xs font-label-md">
+<span class="material-symbols-outlined" style="font-size: 16px;">lock</span>
+                                Secure SSL
+                            </div>
+</div>
+<form class="space-y-4">
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1" for="cardName">Cardholder Name</label>
+<input class="w-full bg-surface-muted border border-border-soft rounded-lg px-4 py-2 text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" id="cardName" placeholder="John Doe" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1" for="cardNumber">Card Number</label>
+<div class="relative">
+<input class="w-full bg-surface-muted border border-border-soft rounded-lg pl-10 pr-4 py-2 text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" id="cardNumber" placeholder="0000 0000 0000 0000" type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-text-secondary">credit_card</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1" for="expDate">MM/YY</label>
+<input class="w-full bg-surface-muted border border-border-soft rounded-lg px-4 py-2 text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" id="expDate" placeholder="MM/YY" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1" for="cvc">CVC</label>
+<input class="w-full bg-surface-muted border border-border-soft rounded-lg px-4 py-2 text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" id="cvc" placeholder="123" type="text"/>
+</div>
+</div>
+</form>
+</div>
+<div class="mt-8">
+<button class="w-full bg-primary text-on-primary rounded-lg py-3 font-label-md text-label-md hover:bg-accent-hover transition-colors flex justify-center items-center gap-2">
+<span class="material-symbols-outlined">lock</span>
+                            Authorize Payment Hold - Rs. 2,650
+                        </button>
+<p class="text-caption font-caption text-text-secondary text-center mt-3">You won't be charged until the job is complete.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low w-full border-t border-border-soft mt-auto">
+<div class="py-12 px-margin-x max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-gap-standard">
+<div class="font-headline-md text-headline-md text-on-surface">FixIt</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="text-text-secondary font-label-md text-label-md hover:text-primary transition-colors duration-200" href="#">Privacy Policy</a>
+<a class="text-text-secondary font-label-md text-label-md hover:text-primary transition-colors duration-200" href="#">Terms of Service</a>
+<a class="text-text-secondary font-label-md text-label-md hover:text-primary transition-colors duration-200" href="#">Help Center</a>
+<a class="text-text-secondary font-label-md text-label-md hover:text-primary transition-colors duration-200" href="#">Become a Professional</a>
+</div>
+<div class="text-text-secondary font-caption text-caption">
+                © 2024 FixIt Home Services. All rights reserved.
+            </div>
+</div>
+</footer>
+</body></html>

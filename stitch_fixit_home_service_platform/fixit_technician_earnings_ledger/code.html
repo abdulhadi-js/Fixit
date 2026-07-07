@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Technician Earnings &amp; Ledger - TechnicianHub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#68dba9",
+                        "on-surface-variant": "#3d4a42",
+                        "on-primary-container": "#f5fff7",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#f5fbf5",
+                        "on-primary-fixed": "#002114",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "border-soft": "#E4E4E7",
+                        "inverse-surface": "#2c322e",
+                        "surface-tint": "#006c4a",
+                        "secondary": "#5f5e61",
+                        "background": "#f5fbf5",
+                        "tertiary-container": "#ba5551",
+                        "surface-dim": "#d5dcd6",
+                        "primary-fixed-dim": "#68dba9",
+                        "on-tertiary-fixed-variant": "#7f2928",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#e9efe9",
+                        "on-tertiary-fixed": "#410004",
+                        "on-background": "#171d19",
+                        "secondary-fixed": "#e4e1e6",
+                        "text-primary": "#18181B",
+                        "surface-container-high": "#e4eae4",
+                        "canvas": "#FAFAFA",
+                        "secondary-container": "#e4e1e6",
+                        "primary": "#006948",
+                        "surface-high": "#FFFFFF",
+                        "on-secondary-container": "#656467",
+                        "tertiary-fixed-dim": "#ffb3ae",
+                        "surface-variant": "#dee4de",
+                        "on-primary-fixed-variant": "#005137",
+                        "inverse-on-surface": "#ecf2ec",
+                        "primary-container": "#00855d",
+                        "secondary-fixed-dim": "#c8c5ca",
+                        "primary-fixed": "#85f8c4",
+                        "text-secondary": "#71717A",
+                        "surface-container-highest": "#dee4de",
+                        "on-tertiary-container": "#fffbff",
+                        "surface-muted": "#F4F4F5",
+                        "on-secondary-fixed": "#1b1b1e",
+                        "tertiary": "#9b3e3b",
+                        "error": "#ba1a1a",
+                        "on-surface": "#171d19",
+                        "error-container": "#ffdad6",
+                        "outline": "#6d7a72",
+                        "tertiary-fixed": "#ffdad7",
+                        "accent-hover": "#047857",
+                        "outline-variant": "#bccac0",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#eff5ef",
+                        "on-secondary-fixed-variant": "#47464a",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#f5fbf5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "gutter": "1.5rem",
+                        "gap-tight": "1rem",
+                        "gap-standard": "1.5rem",
+                        "margin-x": "2rem"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Geist", "sans-serif"],
+                        "headline-lg": ["Geist", "sans-serif"],
+                        "label-md": ["Geist", "sans-serif"],
+                        "body-md": ["Geist", "sans-serif"],
+                        "headline-lg-mobile": ["Geist", "sans-serif"],
+                        "caption": ["Geist", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg": ["30px", { "lineHeight": "36px", "letterSpacing": "-0.025em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.025em", "fontWeight": "700" }],
+                        "caption": ["12px", { "lineHeight": "16px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            }
+            .fill-icon {
+                font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            }
+        }
+    </style>
+</head>
+<body class="bg-canvas text-on-surface font-body-md h-screen overflow-hidden flex flex-col md:flex-row">
+<!-- TopAppBar (Mobile & Desktop) -->
+<header class="bg-surface-high dark:bg-inverse-surface border-b border-soft dark:border-outline-variant fixed top-0 left-0 w-full z-50 flex justify-between items-center px-gutter h-16 transition-all duration-200 ease-in-out">
+<div class="flex items-center gap-4">
+<button class="md:hidden text-secondary hover:text-on-surface hover:bg-surface-muted dark:hover:bg-on-surface-variant p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="text-headline-md font-headline-md font-bold text-primary dark:text-inverse-primary">TechnicianHub</div>
+</div>
+<div class="hidden md:flex flex-1 justify-center max-w-md mx-8">
+<!-- Search hidden as per config -->
+</div>
+<div class="flex items-center gap-4 text-primary dark:text-inverse-primary">
+<button class="hover:bg-surface-muted dark:hover:bg-on-surface-variant p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="hover:bg-surface-muted dark:hover:bg-on-surface-variant p-2 rounded-full transition-colors hidden sm:block">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-soft cursor-pointer shrink-0 ml-2">
+<img alt="Technician profile photo" class="h-full w-full object-cover" data-alt="A professional headshot of a reliable service technician wearing a clean emerald green uniform polo shirt. The lighting is bright and modern, suggesting a trustworthy and skilled professional ready for on-site jobs. Crisp white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOUJ4cWG4h98b1REn00AmHxlVTAOD8J6T5nVcS3wk8n7caaDFH9hx7rV-I7XK1ST7fRSWw5nuQOmgocYYqdXOOmiY2Dz_4kgoeLaBGuk9t4bIOSQ99pC6L78d1bUlkVGOLZypsyo3mcolIW_PU5E6SDwv8MddhHjvVkB-UwL0Ylrx1yoUMn6Cv3NJ9tL_ZN13r0tUoWar_2WKAYn9_Kq4C28q74LQgOQ-id9s9iopiRFCZe--8ZOIkhVCrWb_7zphLDRDu_-7Zu3s"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar (Desktop Only) -->
+<nav class="hidden md:flex bg-surface-high dark:bg-inverse-surface border-r border-soft dark:border-outline-variant fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 flex-col p-4 space-y-2 z-40 transition-all duration-200 ease-in-out">
+<div class="mb-6 px-4">
+<h2 class="text-headline-md font-headline-md font-bold text-primary">Workspace</h2>
+<p class="text-caption font-caption text-secondary">On-site Professional</p>
+</div>
+<div class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:text-on-surface hover:bg-surface-muted dark:hover:bg-on-surface-variant rounded-lg scale-95 active:scale-100 transition-transform" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-label-md text-label-md">Agenda</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:text-on-surface hover:bg-surface-muted dark:hover:bg-on-surface-variant rounded-lg scale-95 active:scale-100 transition-transform" href="#">
+<span class="material-symbols-outlined">build</span>
+<span class="font-label-md text-label-md">Active Job</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container rounded-lg font-bold scale-95 active:scale-100 transition-transform shadow-sm" href="#">
+<span class="material-symbols-outlined fill-icon">payments</span> <!-- Mapping Ledger intent to Payments/Earnings icon conceptually if available, but sticking strictly to given tabs logic: Wait, Ledger isn't in JSON tabs. The JSON tabs are: Agenda, Active Job, Customers, Inventory. So which is active? None fit perfectly. Let's make "Agenda" active as fallback, or maybe we are viewing a specific section not in main nav. I'll highlight nothing to keep it true to "Dead End / Deep Link" logic, or highlight a generic one. Wait, the prompt says "sit inside the existing technician dashboard shell". I will leave Agenda active just in case. Wait, rule says: "ONLY use semantic intent if there is no direct match". I'll leave them inactive if no match. Actually, I'll just style them as inactive. -->
+<span class="font-label-md text-label-md">Customers</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:text-on-surface hover:bg-surface-muted dark:hover:bg-on-surface-variant rounded-lg scale-95 active:scale-100 transition-transform" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-md text-label-md">Inventory</span>
+</a>
+</div>
+<div class="mt-auto space-y-1 border-t border-soft pt-4">
+<button class="w-full flex items-center justify-center gap-2 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-label-md text-label-md transition-colors shadow-sm mb-4">
+<span class="material-symbols-outlined text-sm">directions_car</span>
+                En-Route
+            </button>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:text-on-surface hover:bg-surface-muted dark:hover:bg-on-surface-variant rounded-lg scale-95 active:scale-100 transition-transform" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:text-on-surface hover:bg-surface-muted dark:hover:bg-on-surface-variant rounded-lg scale-95 active:scale-100 transition-transform" href="#">
+<span class="material-symbols-outlined">contact_support</span>
+<span class="font-label-md text-label-md">Support</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 w-full pt-16 md:pl-64 h-full overflow-y-auto bg-canvas">
+<div class="max-w-[1280px] mx-auto p-4 md:p-8 md:px-margin-x space-y-8">
+<!-- Header -->
+<header>
+<h1 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-text-primary">Financial Ledger</h1>
+<p class="text-body-md font-body-md text-text-secondary mt-1">Review your recent earnings and completed job transactions.</p>
+</header>
+<!-- KPI Stats Grid (Bento) -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Card 1 (Accent) -->
+<div class="bg-primary text-white p-6 rounded-xl border border-primary-container shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="absolute -right-6 -top-6 w-24 h-24 bg-white/10 rounded-full blur-xl group-hover:scale-150 transition-transform duration-700"></div>
+<div>
+<p class="text-label-md font-label-md text-white/80 mb-1 uppercase tracking-wider text-xs">Cleared This Week</p>
+<h2 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg mt-2">Rs. 14,500</h2>
+</div>
+<div class="mt-4 flex items-center gap-2 text-sm text-white/90">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>+12% vs last week</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-high p-6 rounded-xl border border-soft shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start">
+<p class="text-label-md font-label-md text-text-secondary mb-1">Pending Capture</p>
+<span class="material-symbols-outlined text-secondary opacity-50">hourglass_empty</span>
+</div>
+<h2 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-text-primary mt-2">Rs. 2,500</h2>
+</div>
+<div class="mt-4 flex items-center gap-2 text-sm text-tertiary-container">
+<span>Expected by Friday</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-high p-6 rounded-xl border border-soft shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start">
+<p class="text-label-md font-label-md text-text-secondary mb-1">Completed Jobs</p>
+<span class="material-symbols-outlined text-secondary opacity-50">task_alt</span>
+</div>
+<h2 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-text-primary mt-2">12</h2>
+</div>
+<div class="mt-4 flex items-center gap-2 text-sm text-text-secondary">
+<span>This week</span>
+</div>
+</div>
+</section>
+<!-- Transaction Ledger Table -->
+<section class="bg-surface-high rounded-xl border border-soft shadow-sm overflow-hidden">
+<div class="px-6 py-5 border-b border-soft flex justify-between items-center bg-canvas/50">
+<h3 class="text-headline-md font-headline-md text-text-primary">Recent Transactions</h3>
+<button class="flex items-center gap-2 text-sm font-medium text-text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+                        Filter
+                    </button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left whitespace-nowrap">
+<thead>
+<tr class="bg-surface-high border-b border-soft">
+<th class="px-6 py-4 text-label-md font-label-md text-text-secondary font-medium tracking-wide">Date</th>
+<th class="px-6 py-4 text-label-md font-label-md text-text-secondary font-medium tracking-wide">Service Executed</th>
+<th class="px-6 py-4 text-label-md font-label-md text-text-secondary font-medium tracking-wide">Customer Location</th>
+<th class="px-6 py-4 text-label-md font-label-md text-text-secondary font-medium tracking-wide text-right">Amount</th>
+</tr>
+</thead>
+<tbody class="text-body-md font-body-md divide-y divide-soft/50">
+<tr class="hover:bg-surface-muted/50 transition-colors group">
+<td class="px-6 py-4 text-text-secondary">14 July</td>
+<td class="px-6 py-4 text-text-primary font-medium">Ceiling Fan Installation</td>
+<td class="px-6 py-4 text-text-secondary">House 12, Block 4, Clifton</td>
+<td class="px-6 py-4 text-primary font-medium text-right">+ Rs. 800</td>
+</tr>
+<tr class="hover:bg-surface-muted/50 transition-colors group">
+<td class="px-6 py-4 text-text-secondary">14 July</td>
+<td class="px-6 py-4 text-text-primary font-medium">1.5 Ton AC Deep Clean</td>
+<td class="px-6 py-4 text-text-secondary">House 4B, Block 6, PECHS</td>
+<td class="px-6 py-4 text-primary font-medium text-right">+ Rs. 2,500</td>
+</tr>
+<tr class="hover:bg-surface-muted/50 transition-colors group">
+<td class="px-6 py-4 text-text-secondary">13 July</td>
+<td class="px-6 py-4 text-text-primary font-medium">Water Pump Servicing</td>
+<td class="px-6 py-4 text-text-secondary">Villa 88, DHA Phase 5</td>
+<td class="px-6 py-4 text-primary font-medium text-right">+ Rs. 1,200</td>
+</tr>
+<tr class="hover:bg-surface-muted/50 transition-colors group">
+<td class="px-6 py-4 text-text-secondary">13 July</td>
+<td class="px-6 py-4 text-text-primary font-medium">Switchboard Repair</td>
+<td class="px-6 py-4 text-text-secondary">Apartment 12, Gulshan</td>
+<td class="px-6 py-4 text-primary font-medium text-right">+ Rs. 600</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-6 py-4 border-t border-soft bg-canvas/30 text-center">
+<button class="text-sm font-medium text-primary hover:text-primary-container transition-colors">View All Transactions</button>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="lg:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface-high dark:bg-inverse-surface border-t border-soft dark:border-outline-variant shadow-sm transition-all duration-200">
+<a class="flex flex-col items-center justify-center text-secondary hover:text-primary active:scale-95 transition-all" href="#">
+<span class="material-symbols-outlined">event_note</span>
+<span class="font-label-md text-label-md text-[10px]">Agenda</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary hover:text-primary active:scale-95 transition-all" href="#">
+<span class="material-symbols-outlined">assignment_ind</span>
+<span class="font-label-md text-label-md text-[10px]">Job</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary hover:text-primary active:scale-95 transition-all" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-label-md text-label-md text-[10px]">Profile</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary hover:text-primary active:scale-95 transition-all" href="#">
+<span class="material-symbols-outlined">support_agent</span>
+<span class="font-label-md text-label-md text-[10px]">Support</span>
+</a>
+</nav>
+</body></html>

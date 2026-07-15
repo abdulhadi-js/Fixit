@@ -70,7 +70,7 @@ function ActiveJobWorkspaceContent() {
                 </div>
             )}
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 flex-grow pb-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 flex-grow pb-8">
                 {/* Job Details Column */}
                 <div className="lg:col-span-2 flex flex-col gap-6">
                     <div className="bg-surface-high border border-border-soft rounded-xl p-6 md:p-8 shadow-sm relative overflow-hidden">

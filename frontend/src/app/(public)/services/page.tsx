@@ -49,7 +49,7 @@ export default function ServicesPage() {
             <TopNav />
             
             {/* Hero Section */}
-            <div className="relative pt-32 pb-16 overflow-hidden">
+            <div className="relative pt-24 md:pt-32 pb-12 md:pb-16 overflow-hidden">
                 <div className="absolute inset-0 bg-primary/5 [mask-image:linear-gradient(to_bottom,white,transparent)] z-0"></div>
                 <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
                 
@@ -57,7 +57,7 @@ export default function ServicesPage() {
                     <motion.h1 
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="font-display-md text-5xl md:text-6xl font-extrabold text-on-surface mb-6 tracking-tight"
+                        className="font-display-md text-4xl sm:text-5xl md:text-6xl font-extrabold text-on-surface mb-6 tracking-tight"
                     >
                         Premium Home Services
                     </motion.h1>
@@ -75,7 +75,7 @@ export default function ServicesPage() {
             <main className="flex-1 max-w-container-max mx-auto w-full px-margin-x pb-24 relative z-10">
                 {/* Filters */}
                 <div className="mb-12 flex flex-col items-center">
-                    <div className="flex flex-wrap justify-center gap-3 bg-surface-high p-2 rounded-2xl border border-border-soft shadow-sm max-w-full overflow-x-auto hide-scrollbar">
+                    <div className="flex flex-wrap justify-center gap-2 sm:gap-3 bg-surface-high p-2 rounded-2xl border border-border-soft shadow-sm max-w-full overflow-x-auto hide-scrollbar">
                         {categories.map((cat, idx) => {
                             const Icon = CATEGORY_ICONS[cat] || Layers;
                             const isSelected = selectedCategory === cat;
@@ -142,7 +142,7 @@ export default function ServicesPage() {
                                             {service.metadata?.category || 'Service'}
                                         </div>
                                     </div>
-                                    <div className="p-6 flex flex-col flex-1 relative z-10 bg-surface-high">
+                                    <div className="p-5 md:p-6 flex flex-col flex-1 relative z-10 bg-surface-high">
                                         <h3 className="font-headline-md text-xl font-bold text-on-surface mb-3 line-clamp-2 group-hover:text-primary transition-colors">{service.title}</h3>
                                         <p className="text-text-secondary text-sm leading-relaxed mb-6 line-clamp-3">
                                             {service.metadata?.description || "Expert service provided by our top-rated technicians."}

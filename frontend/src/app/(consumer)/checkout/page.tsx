@@ -120,7 +120,7 @@ function CheckoutContent() {
                 </div>
                 
                 {error && (
-                    <div className="mb-6 bg-error-container text-on-error-container p-4 rounded-xl flex justify-between items-center">
+                    <div className="mb-6 bg-error-container text-on-error-container p-4 rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                         <span>{error}</span>
                         <button onClick={() => setError('')}>
                             <span className="material-symbols-outlined text-[18px]">close</span>
@@ -173,7 +173,7 @@ function CheckoutContent() {
                                 <div className="flex flex-col py-4">
                                     <p className="text-text-secondary mb-6">Select your preferred payment method.</p>
                                     
-                                    <div className="flex gap-4 mb-8">
+                                    <div className="flex flex-col sm:flex-row gap-4 mb-8">
                                         <button 
                                             onClick={() => setPaymentMethod('CARD')}
                                             className={`flex-1 flex flex-col items-center justify-center p-4 border rounded-xl transition-all ${paymentMethod === 'CARD' ? 'border-primary bg-primary/10 text-primary' : 'border-border-soft bg-canvas text-text-secondary hover:border-primary/50'}`}

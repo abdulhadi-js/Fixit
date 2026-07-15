@@ -28,7 +28,7 @@ export default function TechnicianDashboardPage() {
             </header>
 
             {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
                 <div className="bg-surface-high border border-border-soft rounded-lg p-4 flex flex-col justify-center items-start shadow-sm">
                     <span className="font-caption text-caption text-secondary uppercase tracking-wider">Jobs Today</span>
                     {loading ? (
@@ -56,7 +56,7 @@ export default function TechnicianDashboardPage() {
             </div>
 
             {/* Job Cards */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                 {loading ? (
                     Array(3).fill(0).map((_, i) => (
                         <div key={i} className="bg-surface-high border border-border-soft rounded-xl p-6 shadow-sm flex flex-col animate-pulse min-h-[220px]">

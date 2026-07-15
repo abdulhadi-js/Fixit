@@ -41,7 +41,7 @@ export const TopNav = () => {
           'fixed top-0 inset-x-0 z-50 transition-all duration-300',
           scrolled 
             ? 'bg-surface-high/80 backdrop-blur-md border-b border-border-soft py-3 shadow-sm' 
-            : 'bg-transparent py-5'
+            : 'bg-transparent py-3 md:py-5'
         )}
       >
         <div className="max-w-container-max mx-auto px-margin-x flex justify-between items-center">

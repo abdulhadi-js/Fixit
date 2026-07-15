@@ -89,7 +89,7 @@ function OtpVerificationForm() {
   return (
     <div className="bg-canvas min-h-screen flex flex-col">
       <main className="flex-grow flex items-center justify-center px-6">
-        <div className="w-full max-w-md bg-surface-high rounded-xl p-8 border border-border-soft shadow-sm my-20">
+        <div className="w-full max-w-md bg-surface-high rounded-xl p-6 md:p-8 border border-border-soft shadow-sm my-10 md:my-20">
           <div className="text-center mb-8">
             <div className="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-full bg-surface-container-low text-primary">
               <span className="material-symbols-outlined text-[32px]" style={{ fontVariationSettings: "'FILL' 1" }}>
@@ -118,12 +118,12 @@ function OtpVerificationForm() {
           )}
 
           <form className="space-y-8" onSubmit={handleSubmit}>
-            <div className="flex justify-between gap-2 md:gap-3">
+            <div className="flex justify-between gap-1 sm:gap-2 md:gap-3">
               {digits.map((digit, index) => (
                 <input
                   key={index}
                   ref={(el) => { inputRefs.current[index] = el; }}
-                  className="w-12 h-14 bg-surface-muted border border-border-soft text-center text-xl font-semibold text-text-primary focus:border-primary focus:ring-1 focus:ring-primary rounded-lg transition-all outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                  className="w-10 h-12 sm:w-12 sm:h-14 bg-surface-muted border border-border-soft text-center text-lg sm:text-xl font-semibold text-text-primary focus:border-primary focus:ring-1 focus:ring-primary rounded-lg transition-all outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                   maxLength={1}
                   required
                   type="number"

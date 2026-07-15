@@ -241,7 +241,7 @@ export default function PostJobPage() {
                       <p className="text-xs text-text-secondary mt-2">Technicians can accept this price, or you might negotiate later.</p>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm font-bold mb-2">Preferred Date</label>
                         <div className="relative">
@@ -301,7 +301,7 @@ export default function PostJobPage() {
                   </div>
 
                   <div className="bg-canvas border border-border-soft rounded-2xl p-6 space-y-4">
-                    <div className="flex justify-between items-start border-b border-border-soft pb-4">
+                    <div className="flex flex-col sm:flex-row justify-between items-start gap-4 border-b border-border-soft pb-4">
                       <div>
                         <h3 className="font-bold text-lg">{formData.title || 'Untitled Job'}</h3>
                         <p className="text-sm text-text-secondary">{CATEGORIES.find(c => c.id === formData.category)?.label || 'No Category'}</p>
@@ -311,7 +311,7 @@ export default function PostJobPage() {
                       </div>
                     </div>
                     
-                    <div className="grid grid-cols-2 gap-4 text-sm">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                       <div>
                         <p className="text-text-secondary mb-1">Date & Time</p>
                         <p className="font-medium">{formData.date || 'Any Date'} at {formData.time || 'Any Time'}</p>
@@ -328,7 +328,7 @@ export default function PostJobPage() {
                     </div>
                     <div className="pt-2 border-t border-border-soft mt-4">
                       <p className="text-text-secondary mb-3 text-sm">Payment Method</p>
-                      <div className="grid grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <label className={`cursor-pointer flex items-center p-4 border rounded-xl transition-all ${paymentMethod === 'CARD' ? 'border-primary bg-primary/5' : 'border-border-soft hover:border-primary/30'}`}>
                           <input type="radio" name="paymentMethod" value="CARD" checked={paymentMethod === 'CARD'} onChange={() => setPaymentMethod('CARD')} className="hidden" />
                           <CreditCard className={`w-5 h-5 mr-3 ${paymentMethod === 'CARD' ? 'text-primary' : 'text-text-secondary'}`} />
@@ -369,7 +369,7 @@ export default function PostJobPage() {
             </AnimatePresence>
 
             {step < 5 && (
-              <div className="mt-12 flex justify-between items-center pt-6 border-t border-border-soft">
+              <div className="mt-12 flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 pt-6 border-t border-border-soft">
                 {step > 1 ? (
                   <button onClick={handlePrev} className="px-6 py-3 border border-border-soft rounded-xl font-bold text-text-secondary hover:bg-surface-muted transition-colors flex items-center gap-2">
                     <ArrowLeft className="w-4 h-4" /> Back

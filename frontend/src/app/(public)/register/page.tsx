@@ -28,7 +28,7 @@ export default function RegisterPage() {
 
   return (
     <div className="bg-canvas text-text-primary antialiased min-h-screen flex flex-col justify-center items-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-lg bg-surface-high border border-border-soft rounded-2xl p-8 shadow-sm">
+      <div className="w-full max-w-lg bg-surface-high border border-border-soft rounded-2xl p-6 md:p-8 shadow-sm">
         {/* Logo & Title */}
         <div className="mb-8 text-center">
           <div className="flex justify-center items-center mb-6">
@@ -62,7 +62,7 @@ export default function RegisterPage() {
             <span className="font-label-md text-label-md text-text-primary block mb-3">
               I am a...
             </span>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="flex flex-col sm:grid sm:grid-cols-2 gap-4">
               <label className="relative cursor-pointer">
                 <input
                   className="peer sr-only"

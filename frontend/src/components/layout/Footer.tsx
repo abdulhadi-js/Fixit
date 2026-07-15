@@ -8,8 +8,8 @@ export const Footer = () => {
       {/* Subtle background glow */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-primary/5 rounded-full blur-[100px] pointer-events-none -z-10" />
 
-      <div className="max-w-container-max mx-auto px-margin-x pt-20 pb-12">
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-x-8 gap-y-16">
+      <div className="max-w-container-max mx-auto px-margin-x pt-12 md:pt-20 pb-8 md:pb-12">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-x-4 md:gap-x-8 gap-y-12 md:gap-y-16">
           
           {/* Brand Column */}
           <div className="col-span-2 lg:col-span-2 flex flex-col gap-6">

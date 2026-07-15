@@ -36,9 +36,9 @@ export default function ConsumerDashboardPage() {
 
     return (
         <main className="flex-grow px-margin-x max-w-container-max mx-auto w-full py-12 flex flex-col gap-gap-standard">
-            <header className="mb-8 flex justify-between items-center">
+            <header className="mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <h1 className="font-headline-lg text-headline-lg text-on-surface">Welcome back</h1>
-                <a href="/dashboard/post-job/" className="bg-primary text-on-primary px-6 py-3 rounded-full font-label-md text-label-md hover:bg-accent-hover transition-colors shadow-sm flex items-center gap-2">
+                <a href="/dashboard/post-job/" className="w-full md:w-auto justify-center bg-primary text-on-primary px-6 py-3 rounded-full font-label-md text-label-md hover:bg-accent-hover transition-colors shadow-sm flex items-center gap-2">
                     <span className="material-symbols-outlined text-[20px]">add_circle</span>
                     Post a Custom Job
                 </a>
@@ -139,7 +139,7 @@ export default function ConsumerDashboardPage() {
                     <div className="p-6 border-b border-border-soft flex justify-between items-center">
                         <h2 className="font-headline-md text-headline-md text-on-surface">Recent Services</h2>
                     </div>
-                    <div className="flex-grow overflow-y-auto">
+                    <div className="flex-grow overflow-y-auto overflow-x-auto w-full">
                         <table className="w-full text-left border-collapse">
                             <thead className="sticky top-0 bg-surface-high z-10">
                                 <tr className="bg-surface-muted/50 border-b border-border-soft">

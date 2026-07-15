@@ -82,10 +82,10 @@ export default function JobBoardPage() {
       <div className="absolute inset-0 z-0 bg-dot-pattern [mask-image:radial-gradient(ellipse_at_top,white,transparent_80%)] pointer-events-none opacity-60"></div>
 
       <div className="relative z-10 flex flex-col min-h-screen">
-        <main className="flex-1 max-w-7xl w-full mx-auto px-margin-x py-12 flex flex-col lg:flex-row gap-8">
+        <main className="flex-1 max-w-7xl w-full mx-auto px-margin-x py-12 flex flex-col md:flex-row gap-8">
 
           {/* Sidebar / Filters */}
-          <aside className="w-full lg:w-64 flex-shrink-0">
+          <aside className="w-full md:w-64 flex-shrink-0">
             <div className="bg-surface-high border border-border-soft rounded-2xl p-6 shadow-sm sticky top-24">
               <h2 className="font-bold text-lg mb-4 flex items-center gap-2">
                 <Filter className="w-4 h-4" /> Filters
@@ -112,12 +112,12 @@ export default function JobBoardPage() {
 
           {/* Job Feed */}
           <div className="flex-1">
-            <div className="flex justify-between items-end mb-8">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
               <div>
                 <h1 className="font-display-md text-3xl font-bold">Open Jobs</h1>
                 <p className="text-text-secondary">Real-time customer service requests. Accept to add to your agenda.</p>
               </div>
-              <div className="relative w-64 hidden sm:block">
+              <div className="relative w-full md:w-64">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-secondary" />
                 <input
                   type="text"

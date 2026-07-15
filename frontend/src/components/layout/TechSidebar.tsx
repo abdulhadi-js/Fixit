@@ -21,28 +21,25 @@ export const TechSidebar = () => {
           <span className="material-symbols-outlined text-primary">handyman</span>
           <span className="font-headline-md text-headline-md text-on-surface font-bold">FixIt Pro</span>
         </div>
-        <button className="text-secondary hover:text-primary transition-colors">
-          <span className="material-symbols-outlined">menu</span>
-        </button>
       </nav>
 
-      {/* Sidebar (Desktop) */}
-      <aside className="hidden md:flex flex-col w-64 bg-surface-high border-r border-border-soft h-full z-40 relative">
-        <div className="p-6 border-b border-border-soft">
+      {/* Sidebar (Responsive) */}
+      <aside className="flex flex-row md:flex-col w-full md:w-64 bg-surface-high border-b md:border-r md:border-b-0 border-border-soft h-auto md:h-full z-40 relative overflow-x-auto">
+        <div className="hidden md:block p-6 border-b border-border-soft">
           <Link href="/technician/dashboard" className="flex items-center gap-2">
             <span className="material-symbols-outlined text-primary text-2xl">handyman</span>
             <span className="font-headline-md text-headline-md text-on-surface font-bold tracking-tight">FixIt Pro</span>
           </Link>
         </div>
         
-        <nav className="flex-1 py-6 px-4 space-y-2 overflow-y-auto">
+        <nav className="flex-1 py-4 md:py-6 px-4 flex flex-row md:flex-col space-x-2 md:space-x-0 md:space-y-2 overflow-x-auto md:overflow-y-auto">
           {links.map((link) => {
             const isActive = pathname === link.href;
             return (
               <Link 
                 key={link.href}
                 href={link.href} 
-                className={`flex items-center gap-3 px-4 py-3 font-label-md text-label-md rounded-lg transition-all duration-200 ${
+                className={`flex items-center gap-3 px-4 py-3 font-label-md text-label-md rounded-lg transition-all duration-200 whitespace-nowrap ${
                   isActive 
                     ? 'bg-surface-container text-primary' 
                     : 'text-secondary hover:bg-surface-muted hover:text-primary'
@@ -57,10 +54,10 @@ export const TechSidebar = () => {
           })}
         </nav>
 
-        <div className="p-4 border-t border-border-soft">
+        <div className="p-4 border-t-0 md:border-t border-l md:border-l-0 border-border-soft flex-shrink-0">
           <button 
             onClick={logout} 
-            className="flex w-full items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-muted hover:text-error font-label-md text-label-md rounded-lg transition-all duration-200"
+            className="flex w-full items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-muted hover:text-error font-label-md text-label-md rounded-lg transition-all duration-200 whitespace-nowrap"
           >
             <span className="material-symbols-outlined">logout</span>
             Logout

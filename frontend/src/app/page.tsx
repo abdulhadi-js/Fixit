@@ -104,7 +104,7 @@ export default function Home() {
 
             <motion.h1 
               variants={FADE_UP_ANIMATION_VARIANTS}
-              className="font-display-lg text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-on-surface leading-[1.1]"
+              className="font-display-lg text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-on-surface leading-[1.1]"
             >
               Expert Home Repairs, <br />
               <span className="text-primary bg-clip-text">Just a Click Away</span>
@@ -117,7 +117,7 @@ export default function Home() {
               Book verified technicians instantly. Transparent pricing, guaranteed quality, and seamless tracking from start to finish.
             </motion.p>
 
-            <motion.div variants={FADE_UP_ANIMATION_VARIANTS} className="flex flex-col sm:flex-row gap-4 mt-2 w-full sm:w-auto">
+            <motion.div variants={FADE_UP_ANIMATION_VARIANTS} className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-2 w-full sm:w-auto">
               {isLoggedIn ? (
                 <Link href={role === 'TECHNICIAN' ? '/technician/dashboard' : '/dashboard'} className="px-8 py-4 bg-primary text-on-primary rounded-xl font-label-lg hover:bg-accent-hover transition-all shadow-lg hover:shadow-primary/25 hover:-translate-y-1 flex items-center justify-center gap-2">
                   Go to Dashboard <ArrowRight className="w-5 h-5" />
@@ -155,7 +155,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }} 
                 animate={{ opacity: 1, y: 0 }} 
                 transition={{ delay: 0.8, duration: 0.8 }}
-                className="absolute bottom-8 left-8 bg-surface-high/90 backdrop-blur-md p-4 rounded-xl border border-border-soft shadow-xl flex items-center gap-4"
+                className="absolute bottom-4 left-4 sm:bottom-8 sm:left-8 bg-surface-high/90 backdrop-blur-md p-3 sm:p-4 rounded-xl border border-border-soft shadow-xl flex items-center gap-3 sm:gap-4 scale-90 sm:scale-100 origin-bottom-left"
               >
                 <div className="w-10 h-10 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
                   <ShieldCheck className="w-5 h-5" />
@@ -170,7 +170,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: -20 }} 
                 animate={{ opacity: 1, y: 0 }} 
                 transition={{ delay: 1, duration: 0.8 }}
-                className="absolute top-8 right-8 bg-surface-high/90 backdrop-blur-md p-4 rounded-xl border border-border-soft shadow-xl flex items-center gap-4"
+                className="absolute top-4 right-4 sm:top-8 sm:right-8 bg-surface-high/90 backdrop-blur-md p-3 sm:p-4 rounded-xl border border-border-soft shadow-xl flex items-center gap-3 sm:gap-4 scale-90 sm:scale-100 origin-top-right"
               >
                 <div className="w-10 h-10 bg-primary/10 text-primary rounded-full flex items-center justify-center">
                   <Clock className="w-5 h-5" />
@@ -227,9 +227,9 @@ export default function Home() {
         <div className="max-w-container-max mx-auto px-margin-x flex flex-col md:flex-row items-start gap-12 relative">
           
           {/* Left Text (Scrolls natively) */}
-          <div className="w-full md:w-1/2 flex flex-col py-24 pb-[30vh]">
+          <div className="w-full md:w-1/2 flex flex-col py-16 md:py-24 md:pb-[30vh]">
             <div className="mb-12">
-              <h2 className="font-display-md text-4xl font-bold text-on-surface mb-4">How it works</h2>
+              <h2 className="font-display-md text-3xl md:text-4xl font-bold text-on-surface mb-4">How it works</h2>
               <p className="font-body-lg text-text-secondary text-lg">Three simple steps to a better home.</p>
             </div>
 
@@ -285,7 +285,7 @@ export default function Home() {
         
         <Marquee pauseOnHover className="[--duration:30s]">
           {REVIEWS.map((review) => (
-            <div key={review.name} className="w-[350px] bg-surface-high border border-border-soft rounded-2xl p-6 shadow-sm mx-4 flex flex-col gap-4">
+            <div key={review.name} className="w-[300px] md:w-[350px] bg-surface-high border border-border-soft rounded-2xl p-5 md:p-6 shadow-sm mx-3 md:mx-4 flex flex-col gap-4">
               <div className="flex items-center gap-2 text-yellow-400">
                 {Array(5).fill(0).map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
               </div>
@@ -302,7 +302,7 @@ export default function Home() {
       {/* 6. Technician CTA (Meteors) */}
       <section className="w-full px-margin-x py-12 bg-canvas">
         <div className="max-w-container-max mx-auto">
-          <div className="relative flex h-[400px] w-full flex-col items-center justify-center overflow-hidden rounded-[2rem] bg-slate-950 md:shadow-xl border border-slate-800">
+          <div className="relative flex min-h-[400px] w-full flex-col items-center justify-center overflow-hidden rounded-[2rem] bg-slate-950 md:shadow-xl border border-slate-800 py-12 px-4">
             <Meteors number={30} />
             
             <div className="z-10 flex flex-col items-center text-center p-8">

@@ -92,7 +92,7 @@ function ServiceDetailsContent() {
                         <p>{service.metadata?.description || 'Professional service delivered by verified experts. We ensure high-quality workmanship for your home.'}</p>
                     </div>
 
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-12">
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-12">
                         <div className="bg-surface-high border border-border-soft p-4 rounded-xl flex flex-col items-center justify-center text-center shadow-sm">
                             <span className="material-symbols-outlined text-primary mb-2">schedule</span>
                             <span className="font-label-md text-label-md text-on-surface">{service.estimated_duration_mins} Mins</span>
@@ -117,7 +117,7 @@ function ServiceDetailsContent() {
                 </div>
 
                 <div className="w-full lg:w-1/3">
-                    <div className="sticky top-24 bg-surface-high border border-border-soft rounded-2xl p-6 shadow-sm">
+                    <div className="sticky top-24 bg-surface-high border border-border-soft rounded-2xl p-5 md:p-6 shadow-sm">
                         <h2 className="font-headline-md text-headline-md text-on-surface mb-6">Schedule Service</h2>
                         
                         <div className="mb-8 pb-6 border-b border-border-soft">
@@ -127,7 +127,7 @@ function ServiceDetailsContent() {
                         <div className="space-y-6 mb-8">
                             <div>
                                 <h3 className="font-label-md text-text-primary mb-3">1. Select Date & Time</h3>
-                                <div className="grid grid-cols-2 gap-4">
+                                <div className="flex flex-col sm:grid sm:grid-cols-2 gap-4">
                                     <Input
                                         type="date"
                                         value={date}

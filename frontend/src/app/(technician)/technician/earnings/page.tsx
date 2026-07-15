@@ -94,10 +94,10 @@ export default function EarningsPage() {
                 </div>
             </div>
 
-            <div className="bg-surface-high border border-border-soft rounded-xl p-6 shadow-sm mb-8">
+            <div className="bg-surface-high border border-border-soft rounded-xl p-6 shadow-sm mb-8 overflow-x-auto">
                 <h2 className="font-headline-md text-headline-md text-on-surface mb-6">Weekly Overview</h2>
                 
-                <div className="h-64 flex items-end justify-between gap-2 pt-4">
+                <div className="h-64 flex items-end justify-between gap-2 pt-4 min-w-[500px]">
                     {weeklyEarnings.map((day) => {
                         const height = `${(day.amount / maxEarning) * 100}%`;
                         return (
@@ -122,9 +122,11 @@ export default function EarningsPage() {
                 <div className="p-6 border-b border-border-soft">
                     <h2 className="font-headline-md text-headline-md text-on-surface">Recent Transactions</h2>
                 </div>
-                <div className="p-12 text-center text-text-secondary flex flex-col items-center">
-                    <span className="material-symbols-outlined text-4xl mb-3 text-border-soft">receipt_long</span>
-                    <p className="font-body-md">Detailed transaction history will appear here once you complete jobs.</p>
+                <div className="overflow-x-auto">
+                    <div className="p-12 text-center text-text-secondary flex flex-col items-center min-w-[500px]">
+                        <span className="material-symbols-outlined text-4xl mb-3 text-border-soft">receipt_long</span>
+                        <p className="font-body-md">Detailed transaction history will appear here once you complete jobs.</p>
+                    </div>
                 </div>
             </div>
         </div>

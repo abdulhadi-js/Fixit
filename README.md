@@ -1,7 +1,5 @@
 # 🛠️ FixIt - Premium Home Service Platform
 
-![FixIt Banner](./docs/architecture.jpg)
-
 **FixIt** is a highly modern, full-stack, on-demand home service platform designed to seamlessly connect consumers with vetted technicians. From AC repairs to plumbing, FixIt allows users to discover services, schedule appointments, post custom jobs, and complete secure payments, all within a beautiful, mobile-responsive application.
 
 ## 🌟 Features

@@ -1,62 +1,97 @@
-# 🛠️ FixIt - Premium Home Service Platform
+<div align="center">
 
-**FixIt** is a highly modern, full-stack, on-demand home service platform designed to seamlessly connect consumers with vetted technicians. From AC repairs to plumbing, FixIt allows users to discover services, schedule appointments, post custom jobs, and complete secure payments, all within a beautiful, mobile-responsive application.
+# 🛠️ FixIt — Premium Home Services Platform
 
-## 🌟 Features
+**FixIt** is a full-stack, production-grade home services platform that connects consumers with skilled technicians. It supports real-time job scheduling, secure payments via Stripe, OTP-based authentication, and dedicated dashboards for both consumers and technicians.
 
-### 🧑‍💼 Consumer Portal
-- **Service Catalog:** Browse a comprehensive, categorized list of home services.
-- **Smart Scheduling:** Pick a date, time, and address for your service.
-- **Custom Job Postings:** Post custom jobs with descriptions, photos, and estimated budgets.
-- **Secure Checkout:** Fully integrated with Stripe for seamless, secure digital payments.
-- **Real-Time Dashboard:** Track the live status of active jobs and view past transaction history.
+![Next.js](https://img.shields.io/badge/Next.js-15-black)
+![NestJS](https://img.shields.io/badge/NestJS-10-red)
+![Node.js](https://img.shields.io/badge/Node.js-20-green)
+![Vercel](https://img.shields.io/badge/Deployed_on-Vercel-black)
+![Railway](https://img.shields.io/badge/Deployed_on-Railway-purple)
+![License](https://img.shields.io/badge/License-Proprietary-blue)
 
-### 👷 Technician Portal
-- **Job Board:** Browse and claim available local custom jobs.
-- **Live Agenda:** View today's scheduled jobs, consumer addresses, and service details.
-- **Status Updates:** Update job statuses dynamically (En-Route → In Progress → Completed).
-- **Earnings Ledger:** Track weekly earnings and view payout histories with sleek chart visualizations.
+🌐 **Live Consumer/Tech Portal:** [https://fixit-beige.vercel.app](https://fixit-beige.vercel.app)
 
----
+🔌 **Live API Endpoint:** [https://fixit-production-b37f.up.railway.app/api/v1](https://fixit-production-b37f.up.railway.app/api/v1)
 
-## 🏗️ System Architecture
-
-The application is engineered using a robust, decoupled Monorepo architecture designed for high scalability and separation of concerns.
-
-![Architecture Diagram](./docs/architecture.jpg)
-
-### 💻 Frontend (Next.js)
-The frontend is a server-rendered React application hosted on **Vercel**, optimized for blazing-fast load times and SEO.
-- **Framework:** Next.js 16 (App Router)
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS v4 (Mobile-First, fully responsive)
-- **UI Architecture:** Bento Grids, Marquees, Dynamic Sticky Headers
-
-### ⚙️ Backend (NestJS)
-The backend is a strictly-typed, scalable REST API hosted securely on **Railway**.
-- **Framework:** NestJS
-- **Language:** TypeScript
-- **Database ORM:** TypeORM
-- **Authentication:** JWT (JSON Web Tokens) with refresh token rotation
-- **Security:** Helmet, Global Validation Pipes, CORS enabled
-
-### 🗄️ Database (PostgreSQL)
-A production-grade relational database managed within Railway's private network.
-- **Engine:** PostgreSQL
-- **Design:** Complex relational models mapping Users, Services, Bookings, and Financial Transactions.
-
-### 🔌 External Integrations
-- **Stripe:** Secure credit card tokenization and intent-based payment processing.
-- **Twilio / WhatsApp:** Used for dynamic OTP-based user authentication and status notifications.
+</div>
 
 ---
 
-## 🚀 Getting Started
+## 📐 Architecture
 
-Follow these steps to run the FixIt monorepo locally.
+![FixIt Cloud Architecture](./docs/architecture.jpg)
+
+The application runs on a highly scalable, decoupled cloud infrastructure. The frontend is served via Vercel's Edge Network for global performance and SEO optimization. The backend runs as a containerized NestJS API hosted on Railway, securely connected to a fully managed Railway PostgreSQL database.
+
+---
+
+## 🧰 Technology Stack
+
+| Layer | Technology |
+|---|---|
+| **Frontend** | Next.js 15 (App Router), React, TypeScript, Tailwind CSS v4 |
+| **Backend** | NestJS 10, TypeScript, Node.js |
+| **Database** | PostgreSQL 15 |
+| **Payments** | Stripe API (Payment Intents + Webhooks) |
+| **Authentication**| JSON Web Tokens (JWT) + Refresh Rotation |
+| **Frontend Cloud** | Vercel Edge Network |
+| **Backend Cloud** | Railway (PaaS) |
+
+---
+
+## ✨ Core Features
+
+### 👤 Authentication
+- Secure authentication flows
+- JWT access tokens and refresh tokens securely stored
+- Role-based access control (Consumer vs Technician)
+
+### 🛒 Consumer Features
+- Browse a full service catalog (Plumbing, Electrical, AC, Cleaning, etc.)
+- Book standard services with date, time, and address picker
+- Submit **custom job requests** with descriptions and photos
+- Choose payment method — **Stripe (online) or Cash on Delivery**
+- Consumer dashboard with booking history and real-time status tracking
+
+### 🔧 Technician Features
+- Daily job agenda view
+- Accept/reject custom job quotes
+- Real-time status updates: En-Route → In Progress → Completed
+- Weekly earnings ledger and payment history
+
+### 💳 Payments
+- Stripe Integration for secure, PCI-compliant credit/debit card processing
+- Cash on Delivery option
+- Webhook integration to confirm payments and securely update booking status
+
+---
+
+## ☁️ Cloud Infrastructure & CI/CD
+
+The application utilizes a continuous deployment model seamlessly linked to GitHub.
+
+```text
+git push → main
+      │
+      ├──► Vercel (Frontend)
+      │     1. Detects changes in `/frontend`
+      │     2. Builds Next.js optimized static & serverless pages
+      │     3. Deploys to Vercel Global Edge Network
+      │
+      └──► Railway (Backend)
+            1. Detects changes in `/backend`
+            2. Builds Docker container (NestJS)
+            3. Rolling zero-downtime deployment
+```
+
+---
+
+## 💻 Local Development Setup
 
 ### Prerequisites
-- [Node.js](https://nodejs.org/en/) (v20+)
+- [Node.js 20+](https://nodejs.org/)
 - [PostgreSQL](https://www.postgresql.org/) (Running locally or via Docker)
 - [Stripe Account](https://stripe.com/) (For test API keys)
 
@@ -66,68 +101,82 @@ git clone https://github.com/abdulhadi-js/Fixit.git
 cd Fixit
 ```
 
-### 2. Backend Setup
-```bash
-cd backend
-npm install
-```
-Create a `.env` file in the `backend` directory:
+### 2. Configure Backend Environment
+Create a `.env` file inside `/backend`:
 ```env
-# Database
 DB_HOST=localhost
 DB_PORT=5432
 DB_USERNAME=postgres
-DB_PASSWORD=yourpassword
+DB_PASSWORD=your_postgres_password
 DB_NAME=fixit
 
-# Authentication
-JWT_SECRET=supersecret
-JWT_REFRESH_SECRET=supersecret
+JWT_SECRET=supersecret_jwt
+JWT_REFRESH_SECRET=supersecret_refresh
 
-# Stripe
 STRIPE_SECRET_KEY=sk_test_...
 STRIPE_WEBHOOK_SECRET=whsec_...
-
 PORT=3001
 ```
-Start the backend server:
-```bash
-# Optional: Seed the database with categories and test users
-npm run seed
 
-# Run the development server
-npm run start:dev
-```
-
-### 3. Frontend Setup
+### 3. Run the Backend (NestJS API)
 ```bash
-cd ../frontend
+cd backend
 npm install
+npm run seed       # Seeds the database with default services
+npm run start:dev
+# ✅ API running at http://localhost:3001
 ```
-Create a `.env.local` file in the `frontend` directory:
+
+### 4. Configure Frontend Environment
+Create a `.env.local` file inside `/frontend`:
 ```env
 NEXT_PUBLIC_API_URL=http://localhost:3001/api/v1
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
 ```
-Start the frontend server:
+
+### 5. Run the Frontend (Next.js)
 ```bash
+cd ../frontend
+npm install
 npm run dev
+# ✅ UI running at http://localhost:3000
 ```
 
-Visit `http://localhost:3000` to interact with the application!
+---
+
+## 📁 Project Structure
+
+```text
+Fixit/
+├── backend/                  # NestJS API
+│   ├── src/
+│   │   ├── auth/             # JWT authentication and guards
+│   │   ├── bookings/         # Job bookings & scheduling module
+│   │   ├── payments/         # Stripe payment integration
+│   │   ├── services/         # Service catalog module
+│   │   └── users/            # User role management
+│   ├── database/             # Seeder scripts
+│   └── Dockerfile            # Railway container definition
+│
+├── frontend/                 # Next.js Frontend
+│   ├── src/app/
+│   │   ├── (consumer)/       # Consumer-facing pages
+│   │   │   ├── checkout/     # Stripe payment page
+│   │   │   └── dashboard/    # Consumer booking dashboard
+│   │   ├── (technician)/     # Technician-facing pages
+│   │   │   ├── technician/dashboard/ # Job agenda & status updates
+│   │   │   └── technician/earnings/  # Weekly earnings ledger
+│   │   └── (public)/         # Auth & Service Catalog
+│   ├── src/components/       # Reusable Bento grids, Marquees, UI
+│   └── src/lib/api/          # API Client layer
+│
+├── docs/                     # Architecture diagrams
+├── .gitignore
+└── README.md
+```
 
 ---
 
-## 🌐 Deployment Details
+## 📄 License
 
-This application is fully CI/CD ready and currently deployed across cloud providers:
-
-- **Frontend Environment:** [Vercel](https://vercel.com/)
-- **Backend Environment:** [Railway](https://railway.app/)
-- **Database Hosting:** [Railway PostgreSQL](https://railway.app/)
-
-To deploy updates, simply push to the `main` branch. Vercel and Railway will automatically detect the changes, build the respective directories (`/frontend` or `/backend`), and deploy them with zero downtime.
-
----
-
-*Designed and engineered with precision and modern UI/UX principles.*
+This project is proprietary and confidential. All rights reserved © FixIt 2026.

@@ -1,22 +1,23 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { Resend } from 'resend';
+import * as sgMail from '@sendgrid/mail';
 
 @Injectable()
 export class MailService {
   private readonly logger = new Logger(MailService.name);
-  private resend: Resend | null = null;
   private readonly fromEmail: string;
+  private isConfigured = false;
 
   constructor(private config: ConfigService) {
-    const apiKey = this.config.get<string>('RESEND_API_KEY');
-    this.fromEmail = this.config.get<string>('MAIL_FROM', 'onboarding@resend.dev');
+    const apiKey = this.config.get<string>('SENDGRID_API_KEY');
+    this.fromEmail = this.config.get<string>('MAIL_FROM', 'your-verified-email@gmail.com');
 
-    if (apiKey && apiKey !== 'REPLACE_WITH_RESEND_API_KEY') {
-      this.resend = new Resend(apiKey);
-      this.logger.log('Resend mail service initialized ✅');
+    if (apiKey && apiKey !== 'REPLACE_WITH_SENDGRID_API_KEY') {
+      sgMail.setApiKey(apiKey);
+      this.isConfigured = true;
+      this.logger.log('SendGrid mail service initialized ✅');
     } else {
-      this.logger.warn('⚠️  RESEND_API_KEY not set — emails will be logged to console only (dev mode)');
+      this.logger.warn('⚠️  SENDGRID_API_KEY not set — emails will be logged to console only (dev mode)');
     }
   }
 
@@ -33,10 +34,10 @@ export class MailService {
   }
 
   private async send(to: string, subject: string, html: string): Promise<void> {
-    if (!this.resend) {
+    if (!this.isConfigured) {
       this.logger.warn(
         `\n${'='.repeat(60)}\n` +
-        `⚠️  [DEV FALLBACK] Resend not configured — Email NOT sent\n` +
+        `⚠️  [DEV FALLBACK] SendGrid not configured — Email NOT sent\n` +
         `   Recipient : ${to}\n` +
         `   Subject   : ${subject}\n` +
         `${'='.repeat(60)}`,
@@ -45,24 +46,28 @@ export class MailService {
     }
 
     try {
-      const { data, error } = await this.resend.emails.send({
-        from: this.fromEmail,
+      const msg = {
         to,
+        from: this.fromEmail, // MUST be the exact email you verified on SendGrid
         subject,
         html,
-      });
+      };
 
-      if (error) {
-        throw new Error(error.message);
-      }
-
-      this.logger.log(`✅ Email sent to ${to} (id: ${data?.id})`);
+      await sgMail.send(msg);
+      this.logger.log(`✅ Email sent via SendGrid to ${to}`);
     } catch (error: any) {
-      this.logger.error(`❌ Failed to send email to ${to}: ${error.message}`);
+      this.logger.error(`❌ Failed to send email via SendGrid to ${to}`, error.response?.body || error.message);
+      
+      // Extract OTP from html for fallback logging
+      const otpMatch = html.match(/letter-spacing: 10px[^>]*>([^<]+)</);
+      const otp = otpMatch ? otpMatch[1].trim() : '(see email html)';
+      
       this.logger.warn(
         `\n${'='.repeat(60)}\n` +
-        `⚠️  [FALLBACK] Email failed — check RESEND_API_KEY in Railway vars\n` +
+        `⚠️  [FALLBACK] Email failed — check SENDGRID_API_KEY and MAIL_FROM\n` +
         `   Recipient : ${to}\n` +
+        `   OTP Code  : ${otp}\n` +
+        `   Make sure MAIL_FROM matches your verified Sender Identity!\n` +
         `${'='.repeat(60)}`,
       );
     }

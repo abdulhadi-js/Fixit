@@ -56,9 +56,12 @@ export class AuthService {
       otp_expires_at,
     });
 
-    await this.mailService.sendOtp(dto.email, otp_code);
+    // Fire-and-forget: email failures must NEVER block or crash registration
+    this.mailService.sendOtp(dto.email, otp_code).catch((err) => {
+      console.error(`[AuthService] Non-blocking sendOtp failed for ${dto.email}:`, err);
+    });
 
-    return { message: 'OTP sent to your email. Please verify your account.' };
+    return { message: 'Registration successful. Check your email for the OTP.' };
   }
 
   // ─── Verify OTP ────────────────────────────────────────────────────────────
@@ -160,7 +163,10 @@ export class AuthService {
 
     const { otp_code, otp_expires_at } = this.generateOtp();
     await this.usersService.update(user.id, { otp_code, otp_expires_at });
-    await this.mailService.sendOtp(email, otp_code);
+    // Fire-and-forget: email failures must NEVER block or crash resend
+    this.mailService.sendOtp(email, otp_code).catch((err) => {
+      console.error(`[AuthService] Non-blocking sendOtp (resend) failed for ${email}:`, err);
+    });
 
     return { message: 'New OTP sent to your email.' };
   }
@@ -175,7 +181,11 @@ export class AuthService {
 
     const { otp_code, otp_expires_at } = this.generateOtp();
     await this.usersService.update(user.id, { otp_code, otp_expires_at });
-    await this.mailService.sendOtp(dto.email, otp_code);
+
+    // Fire-and-forget: email failures must NEVER block or crash forgot-password
+    this.mailService.sendOtp(dto.email, otp_code).catch((err) => {
+      console.error(`[AuthService] Non-blocking sendOtp (forgot-password) failed for ${dto.email}:`, err);
+    });
 
     return { message: 'If this email exists, an OTP has been sent.' };
   }

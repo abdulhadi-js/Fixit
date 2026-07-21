@@ -14,14 +14,24 @@ export default function RegisterPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [terms, setTerms] = useState(false);
+  const [success, setSuccess] = useState('');
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (loading) return; // guard against double-submission
     if (!terms) {
       setError('Please agree to the Terms of Service and Privacy Policy.');
       return;
     }
-    await register({ full_name: fullName, email, password, role });
+    setError('');
+    setSuccess('');
+    try {
+      await register({ full_name: fullName, email, password, role });
+      // If register() doesn't throw it will redirect; show message in case redirect is slow
+      setSuccess('Registration successful! Redirecting to OTP verification… Check your email for the OTP code.');
+    } catch {
+      // error is already set inside useAuth.register via setError
+    }
   }
 
   return (
@@ -44,11 +54,22 @@ export default function RegisterPage() {
           </p>
         </div>
 
+        {/* Success Message */}
+        {success && (
+          <div className="mb-6 px-4 py-3 rounded-lg bg-green-100 text-green-800 font-label-md text-label-md flex items-center gap-2 shadow-sm">
+            <span className="material-symbols-outlined text-[18px]">check_circle</span>
+            <span>{success}</span>
+          </div>
+        )}
+
         {/* Error Message */}
         {error && (
           <div className="mb-6 px-4 py-3 rounded-lg bg-error-container text-on-error-container font-label-md text-label-md flex justify-between items-center shadow-sm">
-            <span>{error}</span>
-            <button onClick={() => setError('')}>
+            <div className="flex items-center gap-2">
+              <span className="material-symbols-outlined text-[18px]">error</span>
+              <span>{error}</span>
+            </div>
+            <button onClick={() => setError('')} aria-label="Dismiss error">
               <span className="material-symbols-outlined text-[18px]">close</span>
             </button>
           </div>
@@ -69,13 +90,14 @@ export default function RegisterPage() {
                   value="CONSUMER"
                   checked={role === 'CONSUMER'}
                   onChange={() => setRole('CONSUMER')}
+                  disabled={loading}
                 />
                 <div
                   className={`w-full h-full p-4 rounded-xl border text-center transition-colors ${
                     role === 'CONSUMER'
                       ? 'border-primary bg-surface-container-low'
                       : 'border-border-soft bg-surface-high hover:bg-surface-muted'
-                  }`}
+                  } ${loading ? 'opacity-60 cursor-not-allowed' : ''}`}
                 >
                   <span
                     className={`material-symbols-outlined mb-2 block text-2xl ${
@@ -96,13 +118,14 @@ export default function RegisterPage() {
                   value="TECHNICIAN"
                   checked={role === 'TECHNICIAN'}
                   onChange={() => setRole('TECHNICIAN')}
+                  disabled={loading}
                 />
                 <div
                   className={`w-full h-full p-4 rounded-xl border text-center transition-colors ${
                     role === 'TECHNICIAN'
                       ? 'border-primary bg-surface-container-low'
                       : 'border-border-soft bg-surface-high hover:bg-surface-muted'
-                  }`}
+                  } ${loading ? 'opacity-60 cursor-not-allowed' : ''}`}
                 >
                   <span
                     className={`material-symbols-outlined mb-2 block text-2xl ${
@@ -127,6 +150,7 @@ export default function RegisterPage() {
               type="text"
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
+              disabled={loading}
             />
             <Input
               label="Email"
@@ -137,6 +161,7 @@ export default function RegisterPage() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              disabled={loading}
             />
             <Input
               label="Password"
@@ -147,18 +172,20 @@ export default function RegisterPage() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              disabled={loading}
             />
           </div>
 
           <div className="flex items-start">
             <div className="flex items-center h-5">
               <input
-                className="w-4 h-4 border-border-soft rounded bg-surface-muted text-primary focus:ring-primary focus:ring-2"
+                className="w-4 h-4 border-border-soft rounded bg-surface-muted text-primary focus:ring-primary focus:ring-2 disabled:opacity-60"
                 id="terms"
                 name="terms"
                 type="checkbox"
                 checked={terms}
                 onChange={(e) => setTerms(e.target.checked)}
+                disabled={loading}
               />
             </div>
             <div className="ml-3 font-body-md text-body-md">
@@ -176,9 +203,21 @@ export default function RegisterPage() {
             </div>
           </div>
 
-          <Button type="submit" loading={loading} fullWidth>
-            Create Account
+          <Button
+            type="submit"
+            loading={loading}
+            disabled={loading}
+            fullWidth
+            id="register-submit-btn"
+          >
+            {loading ? 'Creating account…' : 'Create Account'}
           </Button>
+
+          {loading && (
+            <p className="text-center font-body-sm text-text-secondary text-sm mt-1">
+              Please wait, registering your account…
+            </p>
+          )}
         </form>
 
         <div className="mt-8 text-center">

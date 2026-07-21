@@ -8,15 +8,18 @@ export class MailService {
   private readonly logger = new Logger(MailService.name);
 
   constructor(private config: ConfigService) {
+    const port = Number(this.config.get<number>('SMTP_PORT', 1025));
     this.transporter = nodemailer.createTransport({
       host: this.config.get<string>('SMTP_HOST', 'localhost'),
-      port: this.config.get<number>('SMTP_PORT', 1025),
-      secure: false, // true for 465, false for other ports
+      port: port,
+      secure: port === 465, 
       auth: {
         user: this.config.get<string>('SMTP_USER', 'test'),
         pass: this.config.get<string>('SMTP_PASS', 'test'),
       },
-    });
+      // Force IPv4 to prevent 'ENETUNREACH' errors in IPv6-unsupported environments like Railway
+      family: 4,
+    } as any);
   }
 
   async sendOtp(email: string, otpCode: string): Promise<void> {

@@ -131,7 +131,7 @@ export class PaymentsService {
         const intent = event.data.object as Stripe.PaymentIntent;
         const bookingId = intent.metadata?.booking_id;
         if (bookingId) {
-          await this.bookingsService.cancelBooking(bookingId);
+          await this.bookingsService.cancelBooking(bookingId, 'webhook_system', 'ADMIN' as any);
         }
         break;
       }

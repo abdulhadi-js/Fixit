@@ -59,7 +59,7 @@ export class AuthController {
    */
   @Post('logout')
   @HttpCode(200)
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtRefreshGuard)
   logout(@CurrentUser() user: any) {
     return this.authService.logout(user.id);
   }

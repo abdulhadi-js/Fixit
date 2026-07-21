@@ -73,17 +73,12 @@ export class AuthService {
       throw new BadRequestException('No OTP pending. Please register or resend.');
     }
 
-    // DEV BYPASS
-    if (dto.otp_code !== '000000') {
-      const otpBuffer = Buffer.from(dto.otp_code.padEnd(6));
-      const storedBuffer = Buffer.from(user.otp_code.padEnd(6));
-      const isMatch = crypto.timingSafeEqual(otpBuffer, storedBuffer);
-
-      if (!isMatch) throw new UnauthorizedException('Invalid OTP code');
+    if (dto.otp_code !== user.otp_code) {
+      throw new UnauthorizedException('Invalid OTP code');
     }
 
     if (new Date() > user.otp_expires_at) {
-      throw new GoneException('OTP has expired. Please request a new one.');
+      throw new BadRequestException('OTP has expired. Please request a new one.');
     }
 
     const tokens = await this.generateTokenPair(user.id, user.role, user.email);
@@ -199,17 +194,12 @@ export class AuthService {
       throw new BadRequestException('No OTP pending.');
     }
 
-    // DEV BYPASS
-    if (dto.otp_code !== '000000') {
-      const otpBuffer = Buffer.from(dto.otp_code.padEnd(6));
-      const storedBuffer = Buffer.from(user.otp_code.padEnd(6));
-      const isMatch = crypto.timingSafeEqual(otpBuffer, storedBuffer);
-
-      if (!isMatch) throw new UnauthorizedException('Invalid OTP code');
+    if (dto.otp_code !== user.otp_code) {
+      throw new UnauthorizedException('Invalid OTP code');
     }
 
     if (new Date() > user.otp_expires_at) {
-      throw new GoneException('OTP has expired.');
+      throw new BadRequestException('OTP has expired. Please request a new one.');
     }
 
     const password_hash = await bcrypt.hash(dto.new_password, this.SALT_ROUNDS);

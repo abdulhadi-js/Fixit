@@ -35,6 +35,9 @@ export class BookingsService {
   async getAvailableTechnicians(serviceId: string, scheduledStart: string) {
     const service = await this.servicesService.findOne(serviceId);
     const startTime = new Date(scheduledStart);
+    if (isNaN(startTime.getTime())) {
+      throw new BadRequestException('Invalid date format for scheduledStart');
+    }
     const endTime = new Date(
       startTime.getTime() + service.estimated_duration_mins * 60 * 1000,
     );
@@ -81,6 +84,9 @@ export class BookingsService {
     }
 
     const startTime = new Date(dto.scheduled_start);
+    if (isNaN(startTime.getTime())) {
+      throw new BadRequestException('Invalid date format for scheduledStart');
+    }
     const endTime = new Date(
       startTime.getTime() + service.estimated_duration_mins * 60 * 1000,
     );
@@ -225,7 +231,13 @@ export class BookingsService {
   }
 
   /** Cancel booking */
-  async cancelBooking(bookingId: string): Promise<void> {
+  async cancelBooking(bookingId: string, currentUserId: string, currentUserRole: UserRole): Promise<void> {
+    const booking = await this.bookingRepo.findOne({ where: { id: bookingId } });
+    if (!booking) throw new NotFoundException('Booking not found');
+    
+    if (currentUserRole !== UserRole.ADMIN && booking.consumer_id !== currentUserId) {
+      throw new ForbiddenException('You are not authorized to cancel this booking');
+    }
     await this.bookingRepo.update(bookingId, { status: BookingStatus.CANCELLED });
     await this.paymentsService.refundPayment(bookingId);
   }
@@ -240,6 +252,10 @@ export class BookingsService {
     
     if (booking.status === BookingStatus.COMPLETED) {
       throw new BadRequestException('Booking is already completed');
+    }
+
+    if (booking.status !== BookingStatus.IN_PROGRESS) {
+      throw new BadRequestException('Booking must be IN_PROGRESS before it can be completed');
     }
 
     if (booking.payment_method !== 'CASH') {

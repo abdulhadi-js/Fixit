@@ -1,6 +1,6 @@
 import {
   Controller, Get, Post, Patch, Delete,
-  Param, Body, Query, UseGuards,
+  Param, Body, Query, UseGuards, ParseUUIDPipe
 } from '@nestjs/common';
 import { BookingsService } from './bookings.service';
 import { CreateBookingDto, UpdateBookingStatusDto } from './dto/booking.dto';
@@ -67,7 +67,7 @@ export class BookingsController {
   @UseGuards(RolesGuard)
   @Roles(UserRole.TECHNICIAN)
   claimJob(
-    @Param('id') id: string,
+    @Param('id', ParseUUIDPipe) id: string,
     @CurrentUser() user: any,
   ) {
     return this.bookingsService.claimJob(id, user.id);
@@ -92,7 +92,7 @@ export class BookingsController {
   @UseGuards(RolesGuard)
   @Roles(UserRole.TECHNICIAN)
   updateStatus(
-    @Param('id') id: string,
+    @Param('id', ParseUUIDPipe) id: string,
     @CurrentUser() user: any,
     @Body() dto: UpdateBookingStatusDto,
   ) {
@@ -110,7 +110,7 @@ export class BookingsController {
   @UseGuards(RolesGuard)
   @Roles(UserRole.CONSUMER)
   completeJobAsConsumer(
-    @Param('id') id: string,
+    @Param('id', ParseUUIDPipe) id: string,
     @CurrentUser() user: any,
   ) {
     return this.bookingsService.completeByConsumer(id, user.id);
@@ -122,7 +122,10 @@ export class BookingsController {
   @Delete(':id')
   @UseGuards(RolesGuard)
   @Roles(UserRole.CONSUMER, UserRole.ADMIN)
-  cancelBooking(@Param('id') id: string) {
-    return this.bookingsService.cancelBooking(id);
+  cancelBooking(
+    @Param('id', ParseUUIDPipe) id: string,
+    @CurrentUser() user: any,
+  ) {
+    return this.bookingsService.cancelBooking(id, user.id, user.role);
   }
 }

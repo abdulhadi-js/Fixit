@@ -15,7 +15,14 @@ async function bootstrap() {
   // CORS — allow only the Next.js frontend origin
   const configService = app.get(ConfigService);
   app.enableCors({
-    origin: '*',
+    origin: [
+      'https://fixit-beige.vercel.app',
+      'http://localhost:3000',
+      'http://localhost:3001',
+    ],
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
   });
 
   // Global validation — strips unknown fields, transforms types

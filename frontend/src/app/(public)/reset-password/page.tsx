@@ -43,6 +43,9 @@ function ResetPasswordForm() {
           <p className="font-body-md text-body-md text-text-secondary">
             Enter the 6-digit code sent to your email and your new password.
           </p>
+          <p className="font-body-sm text-body-sm text-text-secondary mt-3">
+            <span className="font-medium text-primary">Note:</span> Please check your <span className="font-medium text-text-primary">Spam or Junk</span> folder if you don&apos;t see the email in your inbox.
+          </p>
         </header>
 
         {error && (

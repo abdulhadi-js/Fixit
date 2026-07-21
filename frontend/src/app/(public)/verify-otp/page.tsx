@@ -101,6 +101,9 @@ function OtpVerificationForm() {
               We&apos;ve sent a 6-digit code to your email{' '}
               <span className="font-medium text-text-primary">{email || 'john@example.com'}</span>
             </p>
+            <p className="font-body-sm text-body-sm text-text-secondary mt-3">
+              <span className="font-medium text-primary">Note:</span> Please check your <span className="font-medium text-text-primary">Spam or Junk</span> folder if you don&apos;t see the email in your inbox.
+            </p>
           </div>
 
           {error && (

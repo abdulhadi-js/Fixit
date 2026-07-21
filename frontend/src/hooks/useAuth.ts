@@ -47,7 +47,7 @@ export function useAuth() {
     setError('');
     try {
       await registerUser(data);
-      router.push(`/verify-otp?phone=${encodeURIComponent(data.phone_number)}`);
+      router.push(`/verify-otp?email=${encodeURIComponent(data.email)}`);
     } catch (err: any) {
       setError(err.message || 'Registration failed');
     } finally {
@@ -72,7 +72,7 @@ export function useAuth() {
   const logout = () => {
     clearTokens();
     setRole(null);
-    window.location.href = '/login/';
+    router.push('/login');
   };
 
   return {

@@ -2,43 +2,50 @@
 
 import { useState, FormEvent } from 'react';
 import Link from 'next/link';
-import { useAuth } from '../../../hooks/useAuth';
+import { useRouter } from 'next/navigation';
 import { Input } from '../../../components/ui/Input';
 import { Button } from '../../../components/ui/Button';
+import { forgotPassword } from '../../../lib/api/auth.api';
 
-export default function LoginPage() {
-  const { login, loading, error, setError } = useAuth();
+export default function ForgotPasswordPage() {
+  const router = useRouter();
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    await login({ email, password });
+    setLoading(true);
+    setError('');
+    try {
+      await forgotPassword({ email });
+      router.push(`/reset-password?email=${encodeURIComponent(email)}`);
+    } catch (err: any) {
+      setError(err.message || 'Failed to request password reset');
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
     <div className="bg-surface-muted min-h-screen flex items-center justify-center p-4">
-      {/* Central Bento Card */}
       <main className="w-full max-w-md bg-surface-high rounded-xl border border-border-soft p-8">
-        {/* Header */}
         <header className="mb-8 text-center">
-          <h1 className="font-headline-lg text-headline-lg text-on-surface mb-2">Welcome back</h1>
+          <h1 className="font-headline-lg text-headline-lg text-on-surface mb-2">Forgot Password</h1>
           <p className="font-body-md text-body-md text-text-secondary">
-            Enter your details to sign in to FixIt.
+            Enter your email to receive a password reset code.
           </p>
         </header>
 
-        {/* Error Message */}
         {error && (
           <div className="mb-6 px-4 py-3 rounded-lg bg-error-container text-on-error-container font-label-md text-label-md flex justify-between items-center shadow-sm">
             <span>{error}</span>
-            <button onClick={() => setError('')}>
+            <button type="button" onClick={() => setError('')}>
               <span className="material-symbols-outlined text-[18px]">close</span>
             </button>
           </div>
         )}
 
-        {/* Form */}
         <form className="space-y-6" onSubmit={handleSubmit}>
           <Input
             label="Email"
@@ -52,47 +59,19 @@ export default function LoginPage() {
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <label
-                className="block font-label-md text-label-md text-text-primary"
-                htmlFor="password"
-              >
-                Password
-              </label>
-              <Link
-                className="font-label-md text-label-md text-text-secondary hover:text-primary transition-colors"
-                href="/forgot-password"
-              >
-                Forgot password?
-              </Link>
-            </div>
-            <Input
-              id="password"
-              name="password"
-              placeholder="••••••••"
-              required
-              type="password"
-              icon="lock"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-
           <Button type="submit" loading={loading} fullWidth>
-            Sign In
+            Send Reset Code
           </Button>
         </form>
 
-        {/* Footer */}
         <footer className="mt-8 text-center">
           <p className="font-body-md text-body-md text-text-secondary">
-            Don&apos;t have an account?{' '}
+            Remembered your password?{' '}
             <Link
               className="font-label-md text-label-md text-primary hover:text-accent-hover transition-colors underline decoration-transparent hover:decoration-primary underline-offset-4"
-              href="/register"
+              href="/login"
             >
-              Sign up
+              Sign in
             </Link>
           </p>
         </footer>

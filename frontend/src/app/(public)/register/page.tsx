@@ -11,7 +11,7 @@ export default function RegisterPage() {
   const { register, loading, error, setError } = useAuth();
   const [role, setRole] = useState<Role>('CONSUMER');
   const [fullName, setFullName] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [terms, setTerms] = useState(false);
 
@@ -21,14 +21,12 @@ export default function RegisterPage() {
       setError('Please agree to the Terms of Service and Privacy Policy.');
       return;
     }
-    // Sanitize phone: strip all spaces so "+92 3XX XXXXXXX" becomes "+923XXXXXXXXX" (E.164)
-    const sanitizedPhone = phoneNumber.replace(/\s+/g, '');
-    await register({ full_name: fullName, phone_number: sanitizedPhone, password, role });
+    await register({ full_name: fullName, email, password, role });
   }
 
   return (
     <div className="bg-canvas text-text-primary antialiased min-h-screen flex flex-col justify-center items-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-lg bg-surface-high border border-border-soft rounded-2xl p-6 md:p-8 shadow-sm">
+      <div className="w-full max-w-lg bg-surface-high border border-border-soft rounded-2xl p-8 shadow-sm">
         {/* Logo & Title */}
         <div className="mb-8 text-center">
           <div className="flex justify-center items-center mb-6">
@@ -62,7 +60,7 @@ export default function RegisterPage() {
             <span className="font-label-md text-label-md text-text-primary block mb-3">
               I am a...
             </span>
-            <div className="flex flex-col sm:grid sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-4">
               <label className="relative cursor-pointer">
                 <input
                   className="peer sr-only"
@@ -131,18 +129,15 @@ export default function RegisterPage() {
               onChange={(e) => setFullName(e.target.value)}
             />
             <Input
-              label="Phone Number"
-              id="phone"
-              name="phone"
-              placeholder="+923001234567"
+              label="Email"
+              id="email"
+              name="email"
+              placeholder="john@example.com"
               required
-              type="tel"
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
-            <p className="text-xs text-text-secondary -mt-2">
-              Include country code, e.g. <span className="font-semibold">+923001234567</span>
-            </p>
             <Input
               label="Password"
               id="password"
